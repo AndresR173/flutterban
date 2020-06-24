@@ -47,7 +47,26 @@ class _KanbanPageState extends State<KanbanPage> {
           ),
     );
     return Scaffold(
-      body: _buildBody(),
+      body: SafeArea(
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: columns.length + 1,
+          itemBuilder: (context, index) {
+            if (index == columns.length) {
+              return AddColumn(addColumnAction: () => _showAddColumn());
+            } else {
+              return KanbanColumn(
+                column: columns[index],
+                index: index,
+                dragHandler: (data, int currentIndex) =>
+                    _handleDrag(data, currentIndex),
+                reorderHandler: (int oldIndex, int newIndex, int columnIndex) =>
+                    _handleReOrder(oldIndex, newIndex, columnIndex),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 
@@ -164,29 +183,6 @@ class _KanbanPageState extends State<KanbanPage> {
     columns[data['from'] as int].children.remove(data['task'] as KTask);
     columns[currentIndex].children.add(data['task'] as KTask);
     setState(() {});
-  }
-
-  Widget _buildBody() {
-    return SafeArea(
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: columns.length + 1,
-        itemBuilder: (context, index) {
-          if (index == columns.length) {
-            return AddColumn(addColumnAction: () => _showAddColumn());
-          } else {
-            return KanbanColumn(
-              column: columns[index],
-              index: index,
-              dragHandler: (data, int currentIndex) =>
-                  _handleDrag(data, currentIndex),
-              reorderHandler: (int oldIndex, int newIndex, int columnIndex) =>
-                  _handleReOrder(oldIndex, newIndex, columnIndex),
-            );
-          }
-        },
-      ),
-    );
   }
 
   Widget _buildAddCardTaskWidget(context, int index) {

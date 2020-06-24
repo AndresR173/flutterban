@@ -42,7 +42,6 @@ class _KanbanColumnState extends State<KanbanColumn> {
             color: Colors.white,
           ),
           margin: const EdgeInsets.all(16.0),
-          height: MediaQuery.of(context).size.height * 0.8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -58,37 +57,61 @@ class _KanbanColumnState extends State<KanbanColumn> {
                   ),
                 ),
               ),
-              SingleChildScrollView(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  child: DragAndDropList<KTask>(
-                    widget.column.children,
-                    itemBuilder: (BuildContext context, item) {
-                      return TaskCard(task: item, columnIndex: widget.index);
-                    },
-                    onDragFinish: (oldIndex, newIndex) {
-                      widget.reorderHandler(oldIndex, newIndex, widget.index);
-                    },
-                    canBeDraggedTo: (one, two) => true,
-                    dragElevation: 8.0,
-                  ),
-                  // By using the default ReorderableListView from Flutter, we can't drag an item out of its container
-                  // ReorderableListView(
-                  //   onReorder: (oldIndex, newIndex) {
-                  //     if (newIndex < widget.column.children.length) {
-                  //       widget.reorderHandler(oldIndex, newIndex, widget.index);
-                  //     }
-                  //   },
-                  //   children: [
-                  //     for (final task in widget.column.children)
-                  //       TaskCard(
-                  //           key: ValueKey(task),
-                  //           task: task,
-                  //           columnIndex: widget.index)
-                  //   ],
-                  // ),
+              Expanded(
+                child: DragAndDropList<KTask>(
+                  widget.column.children,
+                  itemBuilder: (BuildContext context, item) {
+                    return TaskCard(task: item, columnIndex: widget.index);
+                  },
+                  onDragFinish: (oldIndex, newIndex) {
+                    widget.reorderHandler(oldIndex, newIndex, widget.index);
+                  },
+                  canBeDraggedTo: (one, two) => true,
+                  dragElevation: 8.0,
                 ),
+                // By using the default ReorderableListView from Flutter, we can't drag an item out of its container
+                // ReorderableListView(
+                //   onReorder: (oldIndex, newIndex) {
+                //     if (newIndex < widget.column.children.length) {
+                //       widget.reorderHandler(oldIndex, newIndex, widget.index);
+                //     }
+                //   },
+                //   children: [
+                //     for (final task in widget.column.children)
+                //       TaskCard(
+                //           key: ValueKey(task),
+                //           task: task,
+                //           columnIndex: widget.index)
+                //   ],
+                // ),
               ),
+              Center(
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Add Task',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Montserrat',
+                          color: Colors.black45,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.black45,
+                          size: 24.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
