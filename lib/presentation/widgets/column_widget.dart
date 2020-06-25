@@ -1,9 +1,10 @@
-import 'package:Flutterban/presentation/widgets/task_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_list_drag_and_drop/drag_and_drop_list.dart';
 
 import '../../domain/entities/column.dart';
+import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
+import 'task_card_widget.dart';
 
 class KanbanColumn extends StatefulWidget {
   final KColumn column;
@@ -116,13 +117,13 @@ class _KanbanColumnState extends State<KanbanColumn> {
           ),
         ),
         Positioned.fill(
-          child: DragTarget<dynamic>(
+          child: DragTarget<KData>(
             onWillAccept: (data) {
               return true;
             },
             onLeave: (data) {},
             onAccept: (data) {
-              if (data['from'] == widget.index) {
+              if (data.from == widget.index) {
                 return;
               }
               widget.dragHandler(data, widget.index);

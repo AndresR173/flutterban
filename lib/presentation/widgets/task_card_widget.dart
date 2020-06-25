@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
 import 'task_text.dart';
 
@@ -19,8 +20,9 @@ class _TaskCardState extends State<TaskCard> {
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
+      height: 50,
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: Draggable<dynamic>(
+      child: Draggable<KData>(
         feedback: Material(
           elevation: 5.0,
           borderRadius: BorderRadius.circular(10.0),
@@ -35,8 +37,13 @@ class _TaskCardState extends State<TaskCard> {
             ),
           ),
         ),
-        childWhenDragging: Container(),
-        data: {"from": widget.columnIndex, "task": widget.task},
+        childWhenDragging: Container(
+          padding: const EdgeInsets.all(16.0),
+          width: 200.0,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0), color: Colors.black12),
+        ),
+        data: KData(from: widget.columnIndex, task: widget.task),
         child: Container(
           padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
