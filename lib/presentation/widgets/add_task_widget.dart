@@ -9,7 +9,7 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
-  final TextEditingController _taskTextController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -55,7 +55,7 @@ class _AddTaskState extends State<AddTask> {
                       }
                       return null;
                     },
-                    controller: _taskTextController,
+                    controller: _textController,
                   ),
                 ),
                 Center(
@@ -76,8 +76,7 @@ class _AddTaskState extends State<AddTask> {
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             Navigator.of(context).pop();
-                            widget.addTaskHandler(
-                                _taskTextController.text.trim());
+                            widget.addTaskHandler(_textController.text.trim());
                           }
                         },
                         child: Text(

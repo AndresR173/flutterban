@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
-import 'task_text.dart';
+import 'task_text_widget.dart';
 
 class TaskCard extends StatefulWidget {
   final KTask task;

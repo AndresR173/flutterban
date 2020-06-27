@@ -1,11 +1,12 @@
-import 'package:Flutterban/presentation/widgets/add_task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../domain/entities/column.dart';
 import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
+import '../widgets/add_column_button_widget.dart';
 import '../widgets/add_column_widget.dart';
+import '../widgets/add_task_widget.dart';
 import '../widgets/column_widget.dart';
 
 class KanbanPage extends StatefulWidget {
@@ -20,21 +21,21 @@ class _KanbanPageState extends State<KanbanPage> {
     KColumn(
       title: 'To Do',
       children: [
-        KTask(title: 'ToDo 1'),
-        KTask(title: 'ToDo 2'),
+        const KTask(title: 'ToDo 1'),
+        const KTask(title: 'ToDo 2'),
       ],
     ),
     KColumn(
       title: 'In Progress',
       children: [
-        KTask(title: 'ToDo 3'),
+        const KTask(title: 'ToDo 3'),
       ],
     ),
     KColumn(
       title: 'Done',
       children: [
-        KTask(title: 'ToDo 4'),
-        KTask(title: 'ToDo 5'),
+        const KTask(title: 'ToDo 4'),
+        const KTask(title: 'ToDo 5'),
       ],
     )
   ];
@@ -43,10 +44,10 @@ class _KanbanPageState extends State<KanbanPage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: Colors.white, // Color for Android
-          statusBarBrightness:
-              Brightness.light // Dark == white status bar -- for IOS.
-          ),
+        statusBarColor: Colors.white, // Color for Android
+        statusBarBrightness:
+            Brightness.light, // Dark == white status bar -- for IOS.
+      ),
     );
     return Scaffold(
       body: SafeArea(
@@ -55,7 +56,9 @@ class _KanbanPageState extends State<KanbanPage> {
           itemCount: columns.length + 1,
           itemBuilder: (context, index) {
             if (index == columns.length) {
-              return AddColumn(addColumnAction: () => {} /*_showAddColumn()*/);
+              return AddColumnButton(
+                addColumnAction: () => _showAddColumn(),
+              );
             } else {
               return KanbanColumn(
                 column: columns[index],
@@ -73,7 +76,20 @@ class _KanbanPageState extends State<KanbanPage> {
     );
   }
 
-  final TextEditingController _cardTextController = TextEditingController();
+  void _showAddColumn() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => AddColumn(
+        addColumnHandler: (String title) {
+          setState(() {
+            columns.add(KColumn(title: title, children: []));
+          });
+        },
+      ),
+    );
+  }
 
   void _showAddTask(int index) {
     showModalBottomSheet(
@@ -89,6 +105,8 @@ class _KanbanPageState extends State<KanbanPage> {
       ),
     );
   }
+
+  // Drag methods
 
   void _handleReOrder(int oldIndex, int newIndex, int index) {
     if (oldIndex != newIndex) {
