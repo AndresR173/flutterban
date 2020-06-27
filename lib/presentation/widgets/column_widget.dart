@@ -11,14 +11,16 @@ class KanbanColumn extends StatefulWidget {
   final int index;
   final Function dragHandler;
   final Function reorderHandler;
+  final Function addTaskHandler;
 
-  const KanbanColumn({
-    Key key,
-    @required this.column,
-    @required this.index,
-    @required this.dragHandler,
-    @required this.reorderHandler,
-  }) : super(key: key);
+  const KanbanColumn(
+      {Key key,
+      @required this.column,
+      @required this.index,
+      @required this.dragHandler,
+      @required this.reorderHandler,
+      @required this.addTaskHandler})
+      : super(key: key);
 
   @override
   _KanbanColumnState createState() => _KanbanColumnState();
@@ -44,6 +46,7 @@ class _KanbanColumnState extends State<KanbanColumn> {
           ),
           margin: const EdgeInsets.all(16.0),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
@@ -88,7 +91,9 @@ class _KanbanColumnState extends State<KanbanColumn> {
               ),
               Center(
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.addTaskHandler(widget.index);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

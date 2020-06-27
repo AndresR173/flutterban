@@ -1,3 +1,4 @@
+import 'package:Flutterban/presentation/widgets/add_task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -54,7 +55,7 @@ class _KanbanPageState extends State<KanbanPage> {
           itemCount: columns.length + 1,
           itemBuilder: (context, index) {
             if (index == columns.length) {
-              return AddColumn(addColumnAction: () => _showAddColumn());
+              return AddColumn(addColumnAction: () => {} /*_showAddColumn()*/);
             } else {
               return KanbanColumn(
                 column: columns[index],
@@ -63,6 +64,7 @@ class _KanbanPageState extends State<KanbanPage> {
                     _handleDrag(data, currentIndex),
                 reorderHandler: (int oldIndex, int newIndex, int columnIndex) =>
                     _handleReOrder(oldIndex, newIndex, columnIndex),
+                addTaskHandler: (int index) => _showAddTask(index),
               );
             }
           },
@@ -71,106 +73,24 @@ class _KanbanPageState extends State<KanbanPage> {
     );
   }
 
-  TextEditingController _cardTextController = TextEditingController();
-  TextEditingController _taskTextController = TextEditingController();
+  final TextEditingController _cardTextController = TextEditingController();
 
-  _showAddColumnTask(int index) {
-    showDialog(
+  void _showAddTask(int index) {
+    showModalBottomSheet(
       context: context,
-      barrierDismissible: true,
-      builder: (context) {
-        return Dialog(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Add Card task",
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(hintText: "Task Title"),
-                  controller: _taskTextController,
-                ),
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Center(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    _addCardTask(index, _taskTextController.text.trim());
-                  },
-                  child: Text("Add Task"),
-                ),
-              )
-            ],
-          ),
-        );
-      },
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => AddTask(
+        addTaskHandler: (String title) {
+          setState(() {
+            columns[index].children.add(KTask(title: title));
+          });
+        },
+      ),
     );
   }
 
-  _showAddColumn() {
-    showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) {
-          return Dialog(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Add Column",
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(hintText: "Card Title"),
-                    controller: _cardTextController,
-                  ),
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                Center(
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      _addCard(_cardTextController.text.trim());
-                    },
-                    child: Text("Add"),
-                  ),
-                )
-              ],
-            ),
-          );
-        });
-  }
-
-  _addCard(String text) {
-    columns.add(KColumn(title: text, children: []));
-    _cardTextController.text = "";
-    setState(() {});
-  }
-
-  _addCardTask(int index, String text) {
-    columns[index].children.add(KTask(title: text));
-    _taskTextController.text = "";
-    setState(() {});
-  }
-
-  _handleReOrder(int oldIndex, int newIndex, int index) {
+  void _handleReOrder(int oldIndex, int newIndex, int index) {
     if (oldIndex != newIndex) {
       setState(() {
         final task = columns[index].children[oldIndex];
@@ -180,31 +100,10 @@ class _KanbanPageState extends State<KanbanPage> {
     }
   }
 
-  _handleDrag(KData data, int currentIndex) {
-    columns[data.from].children.remove(data.task);
-    columns[currentIndex].children.add(data.task);
-    setState(() {});
-  }
-
-  Widget _buildAddCardTaskWidget(context, int index) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: InkWell(
-        onTap: () {
-          _showAddColumnTask(index);
-        },
-        child: Row(
-          children: <Widget>[
-            Icon(
-              Icons.add,
-            ),
-            SizedBox(
-              width: 16.0,
-            ),
-            Text("Add Card Task"),
-          ],
-        ),
-      ),
-    );
+  void _handleDrag(KData data, int currentIndex) {
+    setState(() {
+      columns[data.from].children.remove(data.task);
+      columns[currentIndex].children.add(data.task);
+    });
   }
 }
