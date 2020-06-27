@@ -12,15 +12,17 @@ class KanbanColumn extends StatefulWidget {
   final Function dragHandler;
   final Function reorderHandler;
   final Function addTaskHandler;
+  final Function dragListener;
 
-  const KanbanColumn(
-      {Key key,
-      @required this.column,
-      @required this.index,
-      @required this.dragHandler,
-      @required this.reorderHandler,
-      @required this.addTaskHandler})
-      : super(key: key);
+  const KanbanColumn({
+    Key key,
+    @required this.column,
+    @required this.index,
+    @required this.dragHandler,
+    @required this.reorderHandler,
+    @required this.addTaskHandler,
+    @required this.dragListener,
+  }) : super(key: key);
 
   @override
   _KanbanColumnState createState() => _KanbanColumnState();
@@ -65,7 +67,11 @@ class _KanbanColumnState extends State<KanbanColumn> {
                 child: DragAndDropList<KTask>(
                   widget.column.children,
                   itemBuilder: (BuildContext context, item) {
-                    return TaskCard(task: item, columnIndex: widget.index);
+                    return TaskCard(
+                      task: item,
+                      columnIndex: widget.index,
+                      dragListener: widget.dragListener,
+                    );
                   },
                   onDragFinish: (oldIndex, newIndex) {
                     widget.reorderHandler(oldIndex, newIndex, widget.index);

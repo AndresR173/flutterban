@@ -40,6 +40,8 @@ class _KanbanPageState extends State<KanbanPage> {
     )
   ];
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -52,6 +54,7 @@ class _KanbanPageState extends State<KanbanPage> {
     return Scaffold(
       body: SafeArea(
         child: ListView.builder(
+          controller: _scrollController,
           scrollDirection: Axis.horizontal,
           itemCount: columns.length + 1,
           itemBuilder: (context, index) {
@@ -68,12 +71,21 @@ class _KanbanPageState extends State<KanbanPage> {
                 reorderHandler: (int oldIndex, int newIndex, int columnIndex) =>
                     _handleReOrder(oldIndex, newIndex, columnIndex),
                 addTaskHandler: (int index) => _showAddTask(index),
+                dragListener: (PointerMoveEvent event) => _dragListener(event),
               );
             }
           },
         ),
       ),
     );
+  }
+
+  void _dragListener(PointerMoveEvent event) {
+    if (event.position.dx > MediaQuery.of(context).size.width - 20) {
+      _scrollController.jumpTo(_scrollController.offset + 10);
+    } else if (event.position.dx < 20) {
+      _scrollController.jumpTo(_scrollController.offset - 10);
+    }
   }
 
   void _showAddColumn() {
