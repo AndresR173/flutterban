@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 
-class AddColumnButton extends StatefulWidget {
+class AddColumnButton extends StatelessWidget {
   final Function addColumnAction;
 
   const AddColumnButton({Key key, @required this.addColumnAction})
       : super(key: key);
 
   @override
-  _AddColumnState createState() => _AddColumnState();
-}
-
-class _AddColumnState extends State<AddColumnButton> {
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         InkWell(
           onTap: () {
-            widget.addColumnAction();
+            addColumnAction();
           },
           child: Container(
             width: 300.0,
             decoration: BoxDecoration(
               boxShadow: const [
                 BoxShadow(
-                    blurRadius: 8,
-                    color: Color.fromRGBO(127, 140, 141, 0.5),
-                    spreadRadius: 2),
+                  blurRadius: 8,
+                  color: Colors.black12,
+                  spreadRadius: 2,
+                ),
               ],
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.white,

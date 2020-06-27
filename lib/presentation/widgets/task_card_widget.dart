@@ -4,7 +4,7 @@ import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
 import 'task_text_widget.dart';
 
-class TaskCard extends StatefulWidget {
+class TaskCard extends StatelessWidget {
   final KTask task;
   final int columnIndex;
   final Function dragListener;
@@ -17,11 +17,6 @@ class TaskCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TaskCardState createState() => _TaskCardState();
-}
-
-class _TaskCardState extends State<TaskCard> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
@@ -29,7 +24,7 @@ class _TaskCardState extends State<TaskCard> {
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Listener(
         onPointerMove: (PointerMoveEvent event) {
-          widget.dragListener(event);
+          dragListener(event);
         },
         child: Draggable<KData>(
           feedback: Material(
@@ -42,7 +37,7 @@ class _TaskCardState extends State<TaskCard> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0), color: Colors.red),
               child: TaskText(
-                title: widget.task.title,
+                title: task.title,
               ),
             ),
           ),
@@ -53,13 +48,13 @@ class _TaskCardState extends State<TaskCard> {
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.black12),
           ),
-          data: KData(from: widget.columnIndex, task: widget.task),
+          data: KData(from: columnIndex, task: task),
           child: Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0), color: Colors.red),
             child: TaskText(
-              title: widget.task.title,
+              title: task.title,
             ),
           ),
         ),

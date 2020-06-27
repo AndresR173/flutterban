@@ -6,7 +6,7 @@ import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
 import 'task_card_widget.dart';
 
-class KanbanColumn extends StatefulWidget {
+class KanbanColumn extends StatelessWidget {
   final KColumn column;
   final int index;
   final Function dragHandler;
@@ -24,11 +24,6 @@ class KanbanColumn extends StatefulWidget {
     @required this.dragListener,
   }) : super(key: key);
 
-  @override
-  _KanbanColumnState createState() => _KanbanColumnState();
-}
-
-class _KanbanColumnState extends State<KanbanColumn> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -54,7 +49,7 @@ class _KanbanColumnState extends State<KanbanColumn> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  widget.column.title,
+                  column.title,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -65,16 +60,16 @@ class _KanbanColumnState extends State<KanbanColumn> {
               ),
               Expanded(
                 child: DragAndDropList<KTask>(
-                  widget.column.children,
+                  column.children,
                   itemBuilder: (BuildContext context, item) {
                     return TaskCard(
                       task: item,
-                      columnIndex: widget.index,
-                      dragListener: widget.dragListener,
+                      columnIndex: index,
+                      dragListener: dragListener,
                     );
                   },
                   onDragFinish: (oldIndex, newIndex) {
-                    widget.reorderHandler(oldIndex, newIndex, widget.index);
+                    reorderHandler(oldIndex, newIndex, index);
                   },
                   canBeDraggedTo: (one, two) => true,
                   dragElevation: 8.0,
@@ -82,23 +77,23 @@ class _KanbanColumnState extends State<KanbanColumn> {
                 // By using the default ReorderableListView from Flutter, we can't drag an item out of its container
                 // ReorderableListView(
                 //   onReorder: (oldIndex, newIndex) {
-                //     if (newIndex < widget.column.children.length) {
-                //       widget.reorderHandler(oldIndex, newIndex, widget.index);
+                //     if (newIndex < column.children.length) {
+                //       reorderHandler(oldIndex, newIndex, index);
                 //     }
                 //   },
                 //   children: [
-                //     for (final task in widget.column.children)
+                //     for (final task in column.children)
                 //       TaskCard(
                 //           key: ValueKey(task),
                 //           task: task,
-                //           columnIndex: widget.index)
+                //           columnIndex: index)
                 //   ],
                 // ),
               ),
               Center(
                 child: FlatButton(
                   onPressed: () {
-                    widget.addTaskHandler(widget.index);
+                    addTaskHandler(index);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -134,10 +129,10 @@ class _KanbanColumnState extends State<KanbanColumn> {
             },
             onLeave: (data) {},
             onAccept: (data) {
-              if (data.from == widget.index) {
+              if (data.from == index) {
                 return;
               }
-              widget.dragHandler(data, widget.index);
+              dragHandler(data, index);
             },
             builder: (context, accept, reject) {
               return Container();
