@@ -1,3 +1,4 @@
+import 'package:Flutterban/presentation/widgets/taks_menu.widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/data.dart';
@@ -8,12 +9,14 @@ class TaskCard extends StatelessWidget {
   final KTask task;
   final int columnIndex;
   final Function dragListener;
+  final Function deleteItemHandler;
 
   const TaskCard({
     Key key,
     @required this.task,
     @required this.columnIndex,
     @required this.dragListener,
+    @required this.deleteItemHandler,
   }) : super(key: key);
 
   @override
@@ -53,8 +56,29 @@ class TaskCard extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0), color: Colors.red),
-            child: TaskText(
-              title: task.title,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TaskText(
+                    title: task.title,
+                  ),
+                ),
+                InkWell(
+                  child: Icon(
+                    Icons.more_horiz,
+                    color: Colors.white,
+                  ),
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => TaskMenu(
+                        deleteHandler: () =>
+                            deleteItemHandler(columnIndex, task),
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
           ),
         ),

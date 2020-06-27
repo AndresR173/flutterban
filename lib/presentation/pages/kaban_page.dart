@@ -72,6 +72,8 @@ class _KanbanPageState extends State<KanbanPage> {
                     _handleReOrder(oldIndex, newIndex, columnIndex),
                 addTaskHandler: (int index) => _showAddTask(index),
                 dragListener: (PointerMoveEvent event) => _dragListener(event),
+                deleteItemHandler: (int index, KTask task) =>
+                    _deleteItem(index, task),
               );
             }
           },
@@ -116,6 +118,12 @@ class _KanbanPageState extends State<KanbanPage> {
         },
       ),
     );
+  }
+
+  void _deleteItem(int columnIndex, KTask task) {
+    setState(() {
+      columns[columnIndex].children.remove(task);
+    });
   }
 
   // Drag methods

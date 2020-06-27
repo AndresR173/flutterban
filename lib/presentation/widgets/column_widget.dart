@@ -13,6 +13,7 @@ class KanbanColumn extends StatelessWidget {
   final Function reorderHandler;
   final Function addTaskHandler;
   final Function dragListener;
+  final Function deleteItemHandler;
 
   const KanbanColumn({
     Key key,
@@ -22,6 +23,7 @@ class KanbanColumn extends StatelessWidget {
     @required this.reorderHandler,
     @required this.addTaskHandler,
     @required this.dragListener,
+    @required this.deleteItemHandler,
   }) : super(key: key);
 
   @override
@@ -66,6 +68,7 @@ class KanbanColumn extends StatelessWidget {
                       task: item,
                       columnIndex: index,
                       dragListener: dragListener,
+                      deleteItemHandler: deleteItemHandler,
                     );
                   },
                   onDragFinish: (oldIndex, newIndex) {
