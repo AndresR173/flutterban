@@ -70,8 +70,9 @@ class _AddTaskState extends State<AddColumn> {
                       child: RaisedButton(
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.red)),
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.red),
+                        ),
                         color: Colors.red,
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
