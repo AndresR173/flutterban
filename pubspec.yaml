@@ -16,6 +16,7 @@ dependencies:
   freezed_annotation: ^0.7.1
   get_it: ^3.1.0
   equatable: ^1.1.1
+  flutter_list_drag_and_drop: ^0.1.6
 
   cupertino_icons: ^0.1.3
 
