@@ -1,7 +1,8 @@
+import 'package:Flutterban/application/store/kanban.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../domain/entities/column.dart';
 import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
 import '../widgets/add_column_button_widget.dart';
@@ -17,30 +18,8 @@ class KanbanPage extends StatefulWidget {
 }
 
 class _KanbanPageState extends State<KanbanPage> {
-  List<KColumn> columns = [
-    KColumn(
-      title: 'To Do',
-      children: [
-        const KTask(title: 'ToDo 1'),
-        const KTask(title: 'ToDo 2'),
-      ],
-    ),
-    KColumn(
-      title: 'In Progress',
-      children: [
-        const KTask(title: 'ToDo 3'),
-      ],
-    ),
-    KColumn(
-      title: 'Done',
-      children: [
-        const KTask(title: 'ToDo 4'),
-        const KTask(title: 'ToDo 5'),
-      ],
-    )
-  ];
-
   final ScrollController _scrollController = ScrollController();
+  final Kanban kanban = Kanban();
 
   @override
   Widget build(BuildContext context) {
@@ -52,31 +31,35 @@ class _KanbanPageState extends State<KanbanPage> {
       ),
     );
     return Scaffold(
-      body: SafeArea(
-        child: ListView.builder(
-          controller: _scrollController,
-          scrollDirection: Axis.horizontal,
-          itemCount: columns.length + 1,
-          itemBuilder: (context, index) {
-            if (index == columns.length) {
-              return AddColumnButton(
-                addColumnAction: () => _showAddColumn(),
-              );
-            } else {
-              return KanbanColumn(
-                column: columns[index],
-                index: index,
-                dragHandler: (KData data, int currentIndex) =>
-                    _handleDrag(data, currentIndex),
-                reorderHandler: (int oldIndex, int newIndex, int columnIndex) =>
-                    _handleReOrder(oldIndex, newIndex, columnIndex),
-                addTaskHandler: (int index) => _showAddTask(index),
-                dragListener: (PointerMoveEvent event) => _dragListener(event),
-                deleteItemHandler: (int index, KTask task) =>
-                    _deleteItem(index, task),
-              );
-            }
-          },
+      body: Observer(
+        builder: (_) => SafeArea(
+          child: ListView.builder(
+            controller: _scrollController,
+            scrollDirection: Axis.horizontal,
+            itemCount: kanban.columns.length + 1,
+            itemBuilder: (context, index) {
+              if (index == kanban.columns.length) {
+                return AddColumnButton(
+                  addColumnAction: () => _showAddColumn(),
+                );
+              } else {
+                return KanbanColumn(
+                  column: kanban.columns[index],
+                  index: index,
+                  dragHandler: (KData data, int currentIndex) =>
+                      _handleDrag(data, currentIndex),
+                  reorderHandler:
+                      (int oldIndex, int newIndex, int columnIndex) =>
+                          _handleReOrder(oldIndex, newIndex, columnIndex),
+                  addTaskHandler: (int index) => _showAddTask(index),
+                  dragListener: (PointerMoveEvent event) =>
+                      _dragListener(event),
+                  deleteItemHandler: (int index, KTask task) =>
+                      _deleteItem(index, task),
+                );
+              }
+            },
+          ),
         ),
       ),
     );
@@ -97,9 +80,7 @@ class _KanbanPageState extends State<KanbanPage> {
       isScrollControlled: true,
       builder: (context) => AddColumn(
         addColumnHandler: (String title) {
-          setState(() {
-            columns.add(KColumn(title: title, children: []));
-          });
+          kanban.addColumn(title: title);
         },
       ),
     );
@@ -112,36 +93,25 @@ class _KanbanPageState extends State<KanbanPage> {
       isScrollControlled: true,
       builder: (context) => AddTask(
         addTaskHandler: (String title) {
-          setState(() {
-            columns[index].children.add(KTask(title: title));
-          });
+          kanban.addTask(column: index, title: title);
         },
       ),
     );
   }
 
   void _deleteItem(int columnIndex, KTask task) {
-    setState(() {
-      columns[columnIndex].children.remove(task);
-    });
+    kanban.deleteTask(column: columnIndex, task: task);
   }
 
   // Drag methods
 
   void _handleReOrder(int oldIndex, int newIndex, int index) {
     if (oldIndex != newIndex) {
-      setState(() {
-        final task = columns[index].children[oldIndex];
-        columns[index].children.remove(task);
-        columns[index].children.insert(newIndex, task);
-      });
+      kanban.arrangeTask(column: index, from: oldIndex, to: newIndex);
     }
   }
 
   void _handleDrag(KData data, int currentIndex) {
-    setState(() {
-      columns[data.from].children.remove(data.task);
-      columns[currentIndex].children.add(data.task);
-    });
+    kanban.moveTask(column: currentIndex, data: data);
   }
 }

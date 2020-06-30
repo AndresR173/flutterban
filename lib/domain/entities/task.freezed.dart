@@ -12,9 +12,10 @@ KTask _$KTaskFromJson(Map<String, dynamic> json) {
 }
 
 mixin _$KTask {
+  @observable
   String get title;
 
-  KTask copyWith({String title});
+  KTask copyWith({@observable String title});
 
   Map<String, dynamic> toJson();
 }
@@ -22,7 +23,7 @@ mixin _$KTask {
 class _$KTaskTearOff {
   const _$KTaskTearOff();
 
-  _KTask call({String title}) {
+  _KTask call({@observable String title}) {
     return _KTask(
       title: title,
     );
@@ -33,12 +34,13 @@ const $KTask = _$KTaskTearOff();
 
 @JsonSerializable()
 class _$_KTask implements _KTask {
-  const _$_KTask({this.title});
+  const _$_KTask({@observable this.title});
 
   factory _$_KTask.fromJson(Map<String, dynamic> json) =>
       _$_$_KTaskFromJson(json);
 
   @override
+  @observable
   final String title;
 
   @override
@@ -74,13 +76,14 @@ class _$_KTask implements _KTask {
 }
 
 abstract class _KTask implements KTask {
-  const factory _KTask({String title}) = _$_KTask;
+  const factory _KTask({@observable String title}) = _$_KTask;
 
   factory _KTask.fromJson(Map<String, dynamic> json) = _$_KTask.fromJson;
 
   @override
+  @observable
   String get title;
 
   @override
-  _KTask copyWith({String title});
+  _KTask copyWith({@observable String title});
 }
