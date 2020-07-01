@@ -67,6 +67,7 @@ class KanbanColumn extends StatelessWidget {
                     column.children,
                     itemBuilder: (BuildContext context, item) {
                       return TaskCard(
+                        key: UniqueKey(),
                         task: item,
                         columnIndex: index,
                         dragListener: dragListener,

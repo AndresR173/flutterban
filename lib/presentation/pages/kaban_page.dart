@@ -10,14 +10,7 @@ import '../widgets/add_column_widget.dart';
 import '../widgets/add_task_widget.dart';
 import '../widgets/column_widget.dart';
 
-class KanbanPage extends StatefulWidget {
-  const KanbanPage({Key key}) : super(key: key);
-
-  @override
-  _KanbanPageState createState() => _KanbanPageState();
-}
-
-class _KanbanPageState extends State<KanbanPage> {
+class KanbanPage extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
   final Kanban kanban = Kanban();
 
@@ -40,10 +33,12 @@ class _KanbanPageState extends State<KanbanPage> {
             itemBuilder: (context, index) {
               if (index == kanban.columns.length) {
                 return AddColumnButton(
-                  addColumnAction: () => _showAddColumn(),
+                  key: UniqueKey(),
+                  addColumnAction: () => _showAddColumn(context),
                 );
               } else {
                 return KanbanColumn(
+                  key: UniqueKey(),
                   column: kanban.columns[index],
                   index: index,
                   dragHandler: (KData data, int currentIndex) =>
@@ -51,9 +46,9 @@ class _KanbanPageState extends State<KanbanPage> {
                   reorderHandler:
                       (int oldIndex, int newIndex, int columnIndex) =>
                           _handleReOrder(oldIndex, newIndex, columnIndex),
-                  addTaskHandler: (int index) => _showAddTask(index),
+                  addTaskHandler: (int index) => _showAddTask(context, index),
                   dragListener: (PointerMoveEvent event) =>
-                      _dragListener(event),
+                      _dragListener(context, event),
                   deleteItemHandler: (int index, KTask task) =>
                       _deleteItem(index, task),
                 );
@@ -65,7 +60,7 @@ class _KanbanPageState extends State<KanbanPage> {
     );
   }
 
-  void _dragListener(PointerMoveEvent event) {
+  void _dragListener(BuildContext context, PointerMoveEvent event) {
     if (event.position.dx > MediaQuery.of(context).size.width - 20) {
       _scrollController.jumpTo(_scrollController.offset + 10);
     } else if (event.position.dx < 20) {
@@ -73,7 +68,7 @@ class _KanbanPageState extends State<KanbanPage> {
     }
   }
 
-  void _showAddColumn() {
+  void _showAddColumn(BuildContext context) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -86,7 +81,7 @@ class _KanbanPageState extends State<KanbanPage> {
     );
   }
 
-  void _showAddTask(int index) {
+  void _showAddTask(BuildContext context, int index) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

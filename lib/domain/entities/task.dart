@@ -5,9 +5,10 @@ part 'task.freezed.dart';
 part 'task.g.dart';
 
 @freezed
+@observable
 abstract class KTask with _$KTask, Store {
   const factory KTask({
-    @observable String title,
+    String title,
   }) = _KTask;
 
   factory KTask.fromJson(Map<String, dynamic> json) => _$KTaskFromJson(json);
