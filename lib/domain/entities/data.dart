@@ -8,6 +8,7 @@ part 'data.g.dart';
 @freezed
 abstract class KData with _$KData {
   const factory KData({
+    @nullable @required int column,
     @required int from,
     @required KTask task,
   }) = _KData;

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AddColumn extends StatefulWidget {
+class AddColumnForm extends StatefulWidget {
   final Function addColumnHandler;
-  const AddColumn({Key key, @required this.addColumnHandler}) : super(key: key);
+  const AddColumnForm({Key key, @required this.addColumnHandler})
+      : super(key: key);
 
   @override
-  _AddTaskState createState() => _AddTaskState();
+  _AddColumnFormState createState() => _AddColumnFormState();
 }
 
-class _AddTaskState extends State<AddColumn> {
+class _AddColumnFormState extends State<AddColumnForm> {
   final TextEditingController _textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 

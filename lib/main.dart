@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'Utils/injection_container.dart' as di;
 import 'presentation/pages/kaban_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(MyApp());
 }
 

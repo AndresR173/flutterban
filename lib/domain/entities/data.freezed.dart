@@ -12,10 +12,12 @@ KData _$KDataFromJson(Map<String, dynamic> json) {
 }
 
 mixin _$KData {
+  @nullable
+  int get column;
   int get from;
   KTask get task;
 
-  KData copyWith({int from, KTask task});
+  KData copyWith({@nullable int column, int from, KTask task});
 
   Map<String, dynamic> toJson();
 }
@@ -23,8 +25,12 @@ mixin _$KData {
 class _$KDataTearOff {
   const _$KDataTearOff();
 
-  _KData call({@required int from, @required KTask task}) {
+  _KData call(
+      {@required @nullable int column,
+      @required int from,
+      @required KTask task}) {
     return _KData(
+      column: column,
       from: from,
       task: task,
     );
@@ -35,7 +41,10 @@ const $KData = _$KDataTearOff();
 
 @JsonSerializable()
 class _$_KData implements _KData {
-  const _$_KData({@required this.from, @required this.task})
+  const _$_KData(
+      {@required @nullable this.column,
+      @required this.from,
+      @required this.task})
       : assert(from != null),
         assert(task != null);
 
@@ -43,19 +52,24 @@ class _$_KData implements _KData {
       _$_$_KDataFromJson(json);
 
   @override
+  @nullable
+  final int column;
+  @override
   final int from;
   @override
   final KTask task;
 
   @override
   String toString() {
-    return 'KData(from: $from, task: $task)';
+    return 'KData(column: $column, from: $from, task: $task)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _KData &&
+            (identical(other.column, column) ||
+                const DeepCollectionEquality().equals(other.column, column)) &&
             (identical(other.from, from) ||
                 const DeepCollectionEquality().equals(other.from, from)) &&
             (identical(other.task, task) ||
@@ -65,15 +79,18 @@ class _$_KData implements _KData {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(column) ^
       const DeepCollectionEquality().hash(from) ^
       const DeepCollectionEquality().hash(task);
 
   @override
   _$_KData copyWith({
+    Object column = freezed,
     Object from = freezed,
     Object task = freezed,
   }) {
     return _$_KData(
+      column: column == freezed ? this.column : column as int,
       from: from == freezed ? this.from : from as int,
       task: task == freezed ? this.task : task as KTask,
     );
@@ -86,15 +103,21 @@ class _$_KData implements _KData {
 }
 
 abstract class _KData implements KData {
-  const factory _KData({@required int from, @required KTask task}) = _$_KData;
+  const factory _KData(
+      {@required @nullable int column,
+      @required int from,
+      @required KTask task}) = _$_KData;
 
   factory _KData.fromJson(Map<String, dynamic> json) = _$_KData.fromJson;
 
+  @override
+  @nullable
+  int get column;
   @override
   int get from;
   @override
   KTask get task;
 
   @override
-  _KData copyWith({int from, KTask task});
+  _KData copyWith({@nullable int column, int from, KTask task});
 }

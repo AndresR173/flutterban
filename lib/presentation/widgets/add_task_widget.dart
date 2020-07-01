@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AddTask extends StatefulWidget {
+class AddTaskForm extends StatefulWidget {
   final Function addTaskHandler;
-  const AddTask({Key key, @required this.addTaskHandler}) : super(key: key);
+  const AddTaskForm({Key key, @required this.addTaskHandler}) : super(key: key);
 
   @override
-  _AddTaskState createState() => _AddTaskState();
+  _AddTaskFormState createState() => _AddTaskFormState();
 }
 
-class _AddTaskState extends State<AddTask> {
+class _AddTaskFormState extends State<AddTaskForm> {
   final TextEditingController _textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 

@@ -51,7 +51,7 @@ class TaskCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.black12),
           ),
-          data: KData(from: columnIndex, task: task),
+          data: KData(from: columnIndex, task: task, column: null),
           child: Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
@@ -64,10 +64,6 @@ class TaskCard extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  child: Icon(
-                    Icons.more_horiz,
-                    color: Colors.white,
-                  ),
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
@@ -77,6 +73,10 @@ class TaskCard extends StatelessWidget {
                       ),
                     );
                   },
+                  child: Icon(
+                    Icons.more_horiz,
+                    color: Colors.white,
+                  ),
                 )
               ],
             ),

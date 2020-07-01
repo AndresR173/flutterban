@@ -8,6 +8,7 @@ part of 'data.dart';
 
 _$_KData _$_$_KDataFromJson(Map<String, dynamic> json) {
   return _$_KData(
+    column: json['column'] as int,
     from: json['from'] as int,
     task: json['task'] == null
         ? null
@@ -16,6 +17,7 @@ _$_KData _$_$_KDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$_KDataToJson(_$_KData instance) => <String, dynamic>{
+      'column': instance.column,
       'from': instance.from,
       'task': instance.task,
     };
