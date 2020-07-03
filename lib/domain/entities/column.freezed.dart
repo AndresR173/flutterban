@@ -12,13 +12,10 @@ KColumn _$KColumnFromJson(Map<String, dynamic> json) {
 }
 
 mixin _$KColumn {
-  @observable
   String get title;
-  @observable
   List<KTask> get children;
 
-  KColumn copyWith(
-      {@observable String title, @observable List<KTask> children});
+  KColumn copyWith({String title, List<KTask> children});
 
   Map<String, dynamic> toJson();
 }
@@ -26,7 +23,7 @@ mixin _$KColumn {
 class _$KColumnTearOff {
   const _$KColumnTearOff();
 
-  _KColumn call({@observable String title, @observable List<KTask> children}) {
+  _KColumn call({String title, List<KTask> children}) {
     return _KColumn(
       title: title,
       children: children,
@@ -38,16 +35,14 @@ const $KColumn = _$KColumnTearOff();
 
 @JsonSerializable()
 class _$_KColumn implements _KColumn {
-  const _$_KColumn({@observable this.title, @observable this.children});
+  const _$_KColumn({this.title, this.children});
 
   factory _$_KColumn.fromJson(Map<String, dynamic> json) =>
       _$_$_KColumnFromJson(json);
 
   @override
-  @observable
   final String title;
   @override
-  @observable
   final List<KTask> children;
 
   @override
@@ -90,20 +85,15 @@ class _$_KColumn implements _KColumn {
 }
 
 abstract class _KColumn implements KColumn {
-  const factory _KColumn(
-      {@observable String title,
-      @observable List<KTask> children}) = _$_KColumn;
+  const factory _KColumn({String title, List<KTask> children}) = _$_KColumn;
 
   factory _KColumn.fromJson(Map<String, dynamic> json) = _$_KColumn.fromJson;
 
   @override
-  @observable
   String get title;
   @override
-  @observable
   List<KTask> get children;
 
   @override
-  _KColumn copyWith(
-      {@observable String title, @observable List<KTask> children});
+  _KColumn copyWith({String title, List<KTask> children});
 }

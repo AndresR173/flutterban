@@ -29,9 +29,9 @@ class KanbanPage extends StatelessWidget {
           child: ListView.builder(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: kanban.columns.length + 1,
+            itemCount: kanban.items.length + 1,
             itemBuilder: (context, index) {
-              if (index == kanban.columns.length) {
+              if (index == kanban.items.length) {
                 return AddColumnButton(
                   key: UniqueKey(),
                   addColumnAction: () => _showAddColumn(context),
@@ -39,7 +39,7 @@ class KanbanPage extends StatelessWidget {
               } else {
                 return KanbanColumn(
                   key: UniqueKey(),
-                  column: kanban.columns[index],
+                  column: kanban.items[index],
                   index: index,
                   dragHandler: (KData data, int currentIndex) =>
                       _handleDrag(data, currentIndex),

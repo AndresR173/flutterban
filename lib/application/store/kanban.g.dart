@@ -9,18 +9,18 @@ part of 'kanban.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$Kanban on _Kanban, Store {
-  final _$columnsAtom = Atom(name: '_Kanban.columns');
+  final _$_columnsAtom = Atom(name: '_Kanban._columns');
 
   @override
-  ObservableList<KColumn> get columns {
-    _$columnsAtom.reportRead();
-    return super.columns;
+  ObservableList<KColumn> get _columns {
+    _$_columnsAtom.reportRead();
+    return super._columns;
   }
 
   @override
-  set columns(ObservableList<KColumn> value) {
-    _$columnsAtom.reportWrite(value, super.columns, () {
-      super.columns = value;
+  set _columns(ObservableList<KColumn> value) {
+    _$_columnsAtom.reportWrite(value, super._columns, () {
+      super._columns = value;
     });
   }
 
@@ -85,7 +85,7 @@ mixin _$Kanban on _Kanban, Store {
   @override
   String toString() {
     return '''
-columns: ${columns}
+
     ''';
   }
 }

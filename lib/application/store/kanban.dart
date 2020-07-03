@@ -11,7 +11,7 @@ class Kanban = _Kanban with _$Kanban;
 
 abstract class _Kanban with Store {
   @observable
-  ObservableList<KColumn> columns = ObservableList<KColumn>.of([
+  ObservableList<KColumn> _columns = ObservableList<KColumn>.of([
     KColumn(
       title: 'To Do',
       children: [
@@ -19,29 +19,18 @@ abstract class _Kanban with Store {
         const KTask(title: 'ToDo 2'),
       ],
     ),
-    KColumn(
-      title: 'In Progress',
-      children: [
-        const KTask(title: 'ToDo 3'),
-      ],
-    ),
-    KColumn(
-      title: 'Done',
-      children: [
-        const KTask(title: 'ToDo 4'),
-        const KTask(title: 'ToDo 5'),
-      ],
-    )
   ]);
+
+  ObservableList<KColumn> get items => _columns;
 
   @action
   void addColumn({@required String title}) {
-    columns.add(KColumn(title: title, children: []));
+    _columns.add(KColumn(title: title, children: []));
   }
 
   @action
   void addTask({@required int column, @required String title}) {
-    columns[column].children.add(KTask(title: title));
+    _columns[column].children.add(KTask(title: title));
   }
 
   @action
@@ -50,19 +39,19 @@ abstract class _Kanban with Store {
     @required int from,
     @required int to,
   }) {
-    final task = columns[column].children[from];
-    columns[column].children.remove(task);
-    columns[column].children.insert(to, task);
+    final task = _columns[column].children[from];
+    _columns[column].children.remove(task);
+    _columns[column].children.insert(to, task);
   }
 
   @action
   void deleteTask({@required int column, @required KTask task}) {
-    columns[column].children.remove(task);
+    _columns[column].children.remove(task);
   }
 
   @action
   void moveTask({@required int column, @required KData data}) {
-    columns[data.from].children.remove(data.task);
-    columns[column].children.add(data.task);
+    _columns[data.from].children.remove(data.task);
+    _columns[column].children.add(data.task);
   }
 }
