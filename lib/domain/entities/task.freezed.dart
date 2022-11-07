@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'task.dart';
 
@@ -7,36 +9,84 @@ part of 'task.dart';
 // FreezedGenerator
 // **************************************************************************
 
-KTask _$KTaskFromJson(Map<String, dynamic> json) {
-  return _KTask.fromJson(json);
-}
+T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
 mixin _$KTask {
-  String get title;
+  String get title => throw _privateConstructorUsedError;
 
-  KTask copyWith({String title});
-
-  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
+  $KTaskCopyWith<KTask> get copyWith => throw _privateConstructorUsedError;
 }
 
-class _$KTaskTearOff {
-  const _$KTaskTearOff();
+/// @nodoc
+abstract class $KTaskCopyWith<$Res> {
+  factory $KTaskCopyWith(KTask value, $Res Function(KTask) then) =
+      _$KTaskCopyWithImpl<$Res, KTask>;
+  @useResult
+  $Res call({String title});
+}
 
-  _KTask call({String title}) {
-    return _KTask(
-      title: title,
-    );
+/// @nodoc
+class _$KTaskCopyWithImpl<$Res, $Val extends KTask>
+    implements $KTaskCopyWith<$Res> {
+  _$KTaskCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
-const $KTask = _$KTaskTearOff();
+/// @nodoc
+abstract class _$$_KTaskCopyWith<$Res> implements $KTaskCopyWith<$Res> {
+  factory _$$_KTaskCopyWith(_$_KTask value, $Res Function(_$_KTask) then) =
+      __$$_KTaskCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String title});
+}
 
-@JsonSerializable()
+/// @nodoc
+class __$$_KTaskCopyWithImpl<$Res> extends _$KTaskCopyWithImpl<$Res, _$_KTask>
+    implements _$$_KTaskCopyWith<$Res> {
+  __$$_KTaskCopyWithImpl(_$_KTask _value, $Res Function(_$_KTask) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+  }) {
+    return _then(_$_KTask(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
 class _$_KTask implements _KTask {
-  const _$_KTask({this.title});
-
-  factory _$_KTask.fromJson(Map<String, dynamic> json) =>
-      _$_$_KTaskFromJson(json);
+  const _$_KTask({required this.title});
 
   @override
   final String title;
@@ -49,38 +99,28 @@ class _$_KTask implements _KTask {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _KTask &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)));
+        (other.runtimeType == runtimeType &&
+            other is _$_KTask &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(title);
+  int get hashCode => Object.hash(runtimeType, title);
 
+  @JsonKey(ignore: true)
   @override
-  _$_KTask copyWith({
-    Object title = freezed,
-  }) {
-    return _$_KTask(
-      title: title == freezed ? this.title : title as String,
-    );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_KTaskToJson(this);
-  }
+  @pragma('vm:prefer-inline')
+  _$$_KTaskCopyWith<_$_KTask> get copyWith =>
+      __$$_KTaskCopyWithImpl<_$_KTask>(this, _$identity);
 }
 
 abstract class _KTask implements KTask {
-  const factory _KTask({String title}) = _$_KTask;
-
-  factory _KTask.fromJson(Map<String, dynamic> json) = _$_KTask.fromJson;
+  const factory _KTask({required final String title}) = _$_KTask;
 
   @override
   String get title;
-
   @override
-  _KTask copyWith({String title});
+  @JsonKey(ignore: true)
+  _$$_KTaskCopyWith<_$_KTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }

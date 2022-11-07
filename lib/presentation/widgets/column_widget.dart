@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_list_drag_and_drop/drag_and_drop_list.dart';
 
 import '../../domain/entities/column.dart';
 import '../../domain/entities/data.dart';
-import '../../domain/entities/task.dart';
 import 'task_card_widget.dart';
 
 class KanbanColumn extends StatelessWidget {
@@ -16,15 +14,15 @@ class KanbanColumn extends StatelessWidget {
   final Function deleteItemHandler;
 
   const KanbanColumn({
-    Key key,
-    @required this.column,
-    @required this.index,
-    @required this.dragHandler,
-    @required this.reorderHandler,
-    @required this.addTaskHandler,
-    @required this.dragListener,
-    @required this.deleteItemHandler,
-  }) : super(key: key);
+    super.key,
+    required this.column,
+    required this.index,
+    required this.dragHandler,
+    required this.reorderHandler,
+    required this.addTaskHandler,
+    required this.dragListener,
+    required this.deleteItemHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class KanbanColumn extends StatelessWidget {
         Container(
           width: 300.0,
           decoration: BoxDecoration(
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 8,
                 color: Colors.black12,
@@ -52,7 +50,7 @@ class KanbanColumn extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   column.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Montserrat',
@@ -61,46 +59,32 @@ class KanbanColumn extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: DragAndDropList<KTask>(
-                  column.children,
-                  itemBuilder: (BuildContext context, item) {
-                    return TaskCard(
-                      task: item,
-                      columnIndex: index,
-                      dragListener: dragListener,
-                      deleteItemHandler: deleteItemHandler,
-                    );
+                child: ReorderableListView(
+                  onReorder: (oldIndex, newIndex) {
+                    if (newIndex < column.children.length) {
+                      reorderHandler(oldIndex, newIndex, index);
+                    }
                   },
-                  onDragFinish: (oldIndex, newIndex) {
-                    reorderHandler(oldIndex, newIndex, index);
-                  },
-                  canBeDraggedTo: (one, two) => true,
-                  dragElevation: 8.0,
+                  children: [
+                    for (final task in column.children)
+                      TaskCard(
+                        key: ValueKey(task),
+                        task: task,
+                        columnIndex: index,
+                        dragListener: dragListener,
+                        deleteItemHandler: deleteItemHandler,
+                      )
+                  ],
                 ),
-                // By using the default ReorderableListView from Flutter, we can't drag an item out of its container
-                // ReorderableListView(
-                //   onReorder: (oldIndex, newIndex) {
-                //     if (newIndex < column.children.length) {
-                //       reorderHandler(oldIndex, newIndex, index);
-                //     }
-                //   },
-                //   children: [
-                //     for (final task in column.children)
-                //       TaskCard(
-                //           key: ValueKey(task),
-                //           task: task,
-                //           columnIndex: index)
-                //   ],
-                // ),
               ),
               Center(
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     addTaskHandler(index);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
+                    children: const [
                       Text(
                         'Add Task',
                         style: TextStyle(
@@ -111,7 +95,7 @@ class KanbanColumn extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8),
+                        padding: EdgeInsets.only(left: 8),
                         child: Icon(
                           Icons.add_circle_outline,
                           color: Colors.black45,

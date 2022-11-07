@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AddTask extends StatefulWidget {
   final Function addTaskHandler;
-  const AddTask({Key key, @required this.addTaskHandler}) : super(key: key);
+  const AddTask({super.key, required this.addTaskHandler});
 
   @override
   _AddTaskState createState() => _AddTaskState();
@@ -19,9 +19,9 @@ class _AddTaskState extends State<AddTask> {
       child: Form(
         key: _formKey,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               )),
@@ -29,8 +29,8 @@ class _AddTaskState extends State<AddTask> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'Add Task',
                     style: TextStyle(
@@ -50,7 +50,7 @@ class _AddTaskState extends State<AddTask> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value?.isEmpty ?? true) {
                         return 'Please enter a title';
                       }
                       return null;
@@ -67,19 +67,19 @@ class _AddTaskState extends State<AddTask> {
                     child: ButtonTheme(
                       minWidth: 200,
                       height: 50,
-                      child: RaisedButton(
+                      child: MaterialButton(
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.red)),
+                            side: const BorderSide(color: Colors.red)),
                         color: Colors.red,
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState?.validate() ?? false) {
                             Navigator.of(context).pop();
                             widget.addTaskHandler(_textController.text.trim());
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Add',
                           style: TextStyle(
                             fontSize: 18,

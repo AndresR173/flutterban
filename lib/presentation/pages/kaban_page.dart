@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,35 +12,35 @@ import '../widgets/add_task_widget.dart';
 import '../widgets/column_widget.dart';
 
 class KanbanPage extends StatefulWidget {
-  const KanbanPage({Key key}) : super(key: key);
+  const KanbanPage({super.key});
 
   @override
   _KanbanPageState createState() => _KanbanPageState();
 }
 
 class _KanbanPageState extends State<KanbanPage> {
-  List<KColumn> columns = [
+  List<KColumn> columns = List.from([
     KColumn(
       title: 'To Do',
       children: [
-        const KTask(title: 'ToDo 1'),
-        const KTask(title: 'ToDo 2'),
+        KTask(title: 'ToDo 1'),
+        KTask(title: 'ToDo 2'),
       ],
     ),
     KColumn(
       title: 'In Progress',
       children: [
-        const KTask(title: 'ToDo 3'),
+        KTask(title: 'ToDo 3'),
       ],
     ),
     KColumn(
       title: 'Done',
       children: [
-        const KTask(title: 'ToDo 4'),
-        const KTask(title: 'ToDo 5'),
+        KTask(title: 'ToDo 4'),
+        KTask(title: 'ToDo 5'),
       ],
     )
-  ];
+  ]);
 
   final ScrollController _scrollController = ScrollController();
 
