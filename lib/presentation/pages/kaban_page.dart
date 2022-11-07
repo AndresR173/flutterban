@@ -1,8 +1,8 @@
-import 'package:Flutterban/application/store/kanban.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../application/store/kanban_store.dart';
 import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
 import '../widgets/add_column_button_widget.dart';
@@ -12,7 +12,9 @@ import '../widgets/column_widget.dart';
 
 class KanbanPage extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
-  final Kanban kanban = Kanban();
+  final KanbanStore _store = KanbanStore();
+
+  KanbanPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,9 @@ class KanbanPage extends StatelessWidget {
           child: ListView.builder(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: kanban.items.length + 1,
+            itemCount: _store.items.length + 1,
             itemBuilder: (context, index) {
-              if (index == kanban.items.length) {
+              if (index == _store.items.length) {
                 return AddColumnButton(
                   key: UniqueKey(),
                   addColumnAction: () => _showAddColumn(context),
@@ -39,7 +41,7 @@ class KanbanPage extends StatelessWidget {
               } else {
                 return KanbanColumn(
                   key: UniqueKey(),
-                  column: kanban.items[index],
+                  column: _store.items[index],
                   index: index,
                   dragHandler: (KData data, int currentIndex) =>
                       _handleDrag(data, currentIndex),
@@ -75,7 +77,7 @@ class KanbanPage extends StatelessWidget {
       isScrollControlled: true,
       builder: (context) => AddColumn(
         addColumnHandler: (String title) {
-          kanban.addColumn(title: title);
+          _store.addColumn(title: title);
         },
       ),
     );
@@ -88,25 +90,25 @@ class KanbanPage extends StatelessWidget {
       isScrollControlled: true,
       builder: (context) => AddTask(
         addTaskHandler: (String title) {
-          kanban.addTask(column: index, title: title);
+          _store.addTask(column: index, title: title);
         },
       ),
     );
   }
 
   void _deleteItem(int columnIndex, KTask task) {
-    kanban.deleteTask(column: columnIndex, task: task);
+    _store.deleteTask(column: columnIndex, task: task);
   }
 
   // Drag methods
 
   void _handleReOrder(int oldIndex, int newIndex, int index) {
     if (oldIndex != newIndex) {
-      kanban.arrangeTask(column: index, from: oldIndex, to: newIndex);
+      _store.arrangeTask(column: index, from: oldIndex, to: newIndex);
     }
   }
 
   void _handleDrag(KData data, int currentIndex) {
-    kanban.moveTask(column: currentIndex, data: data);
+    _store.moveTask(column: currentIndex, data: data);
   }
 }

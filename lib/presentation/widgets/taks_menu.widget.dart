@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class TaskMenu extends StatelessWidget {
   final Function deleteHandler;
   const TaskMenu({
-    Key key,
-    @required this.deleteHandler,
-  }) : super(key: key);
+    super.key,
+    required this.deleteHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class TaskMenu extends StatelessWidget {
                 Navigator.of(context).pop();
                 deleteHandler();
               },
-              child: Container(
+              child: const SizedBox(
                 height: 40,
                 child: Text(
                   'Delete Task',

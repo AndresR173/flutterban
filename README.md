@@ -4,6 +4,16 @@
 
 A Kanban board built in Flutter
 
+This project uses 3 different approaches for State Management 
+
+Go to the different branches and check how to implement each state management
+
+[master](https://github.com/AndresR173/flutterban/): Uses setState approach
+
+[bloc](https://github.com/AndresR173/flutterban/tree/bloc): Reference [Bloc](https://pub.dev/packages/flutter_bloc) 
+
+[mobx](https://github.com/AndresR173/flutterban/tree/mobx): Reference [Mobx](https://pub.dev/packages/flutter_mobx)
+
 # License
 
 MIT License

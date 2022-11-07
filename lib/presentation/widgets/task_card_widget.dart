@@ -1,9 +1,9 @@
-import 'package:Flutterban/presentation/widgets/taks_menu.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
+import 'taks_menu.widget.dart';
 import 'task_text_widget.dart';
 
 class TaskCard extends StatelessWidget {
@@ -13,12 +13,12 @@ class TaskCard extends StatelessWidget {
   final Function deleteItemHandler;
 
   const TaskCard({
-    Key key,
-    @required this.task,
-    @required this.columnIndex,
-    @required this.dragListener,
-    @required this.deleteItemHandler,
-  }) : super(key: key);
+    super.key,
+    required this.task,
+    required this.columnIndex,
+    required this.dragListener,
+    required this.deleteItemHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class TaskCard extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    child: Icon(
+                    child: const Icon(
                       Icons.more_horiz,
                       color: Colors.white,
                     ),

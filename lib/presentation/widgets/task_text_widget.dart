@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class TaskText extends StatelessWidget {
   const TaskText({
-    Key key,
-    @required this.title,
-  }) : super(key: key);
+    super.key,
+    required this.title,
+  });
 
   final String title;
 
@@ -12,7 +12,7 @@ class TaskText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w500,
         fontFamily: 'Montserrat',
