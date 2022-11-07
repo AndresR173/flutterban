@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AddTaskForm extends StatefulWidget {
   final Function addTaskHandler;
-  const AddTaskForm({Key key, @required this.addTaskHandler}) : super(key: key);
+  const AddTaskForm({super.key, required this.addTaskHandler});
 
   @override
   _AddTaskFormState createState() => _AddTaskFormState();
@@ -10,18 +10,16 @@ class AddTaskForm extends StatefulWidget {
 
 class _AddTaskFormState extends State<AddTaskForm> {
   final TextEditingController _textController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
       child: Form(
-        key: _formKey,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               )),
@@ -29,8 +27,8 @@ class _AddTaskFormState extends State<AddTaskForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'Add Task',
                     style: TextStyle(
@@ -50,7 +48,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value?.isEmpty ?? true) {
                         return 'Please enter a title';
                       }
                       return null;
@@ -67,19 +65,19 @@ class _AddTaskFormState extends State<AddTaskForm> {
                     child: ButtonTheme(
                       minWidth: 200,
                       height: 50,
-                      child: RaisedButton(
+                      child: MaterialButton(
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.red)),
+                            side: const BorderSide(color: Colors.red)),
                         color: Colors.red,
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
+                          if (_textController.text.isNotEmpty) {
                             Navigator.of(context).pop();
                             widget.addTaskHandler(_textController.text.trim());
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Add',
                           style: TextStyle(
                             fontSize: 18,

@@ -1,14 +1,17 @@
-import 'package:Flutterban/domain/entities/column.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../domain/entities/column.dart';
 
 part 'kanban_state.freezed.dart';
 
 enum Status { loading, loaded }
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 abstract class KanbanState implements _$KanbanState {
-  const factory KanbanState(
-      {@Default([]) List<KColumn> columns, Status status}) = _KanbanState;
+  const factory KanbanState({
+    @Default([]) List<KColumn> columns,
+    required Status status,
+  }) = _KanbanState;
 
   factory KanbanState.initial() {
     return const KanbanState(columns: [], status: Status.loading);

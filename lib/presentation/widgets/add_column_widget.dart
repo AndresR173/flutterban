@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class AddColumnForm extends StatefulWidget {
   final Function addColumnHandler;
-  const AddColumnForm({Key key, @required this.addColumnHandler})
-      : super(key: key);
+  const AddColumnForm({super.key, required this.addColumnHandler});
 
   @override
   _AddColumnFormState createState() => _AddColumnFormState();
@@ -11,18 +10,16 @@ class AddColumnForm extends StatefulWidget {
 
 class _AddColumnFormState extends State<AddColumnForm> {
   final TextEditingController _textController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
       child: Form(
-        key: _formKey,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               )),
@@ -30,8 +27,8 @@ class _AddColumnFormState extends State<AddColumnForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'Add Column',
                     style: TextStyle(
@@ -51,7 +48,7 @@ class _AddColumnFormState extends State<AddColumnForm> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value?.isEmpty ?? true) {
                         return 'Please enter a title';
                       }
                       return null;
@@ -68,21 +65,21 @@ class _AddColumnFormState extends State<AddColumnForm> {
                     child: ButtonTheme(
                       minWidth: 200,
                       height: 50,
-                      child: RaisedButton(
+                      child: MaterialButton(
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          side: BorderSide(color: Colors.red),
+                          side: const BorderSide(color: Colors.red),
                         ),
                         color: Colors.red,
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
+                          if (_textController.text.isNotEmpty) {
                             Navigator.of(context).pop();
                             widget
                                 .addColumnHandler(_textController.text.trim());
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Add',
                           style: TextStyle(
                             fontSize: 18,

@@ -1,8 +1,8 @@
-import 'package:Flutterban/presentation/widgets/taks_menu.widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/data.dart';
 import '../../domain/entities/task.dart';
+import 'taks_menu.widget.dart';
 import 'task_text_widget.dart';
 
 class TaskCard extends StatelessWidget {
@@ -12,12 +12,12 @@ class TaskCard extends StatelessWidget {
   final Function deleteItemHandler;
 
   const TaskCard({
-    Key key,
-    @required this.task,
-    @required this.columnIndex,
-    @required this.dragListener,
-    @required this.deleteItemHandler,
-  }) : super(key: key);
+    super.key,
+    required this.task,
+    required this.columnIndex,
+    required this.dragListener,
+    required this.deleteItemHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class TaskCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.black12),
           ),
-          data: KData(from: columnIndex, task: task, column: null),
+          data: KData(from: columnIndex, task: task),
           child: Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
@@ -73,7 +73,7 @@ class TaskCard extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.more_horiz,
                     color: Colors.white,
                   ),

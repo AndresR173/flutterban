@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'kanban_event.dart';
 
@@ -7,93 +9,112 @@ part of 'kanban_event.dart';
 // FreezedGenerator
 // **************************************************************************
 
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
 mixin _$KanbanEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
-  });
-
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
-  });
-
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
-  });
-
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
-class _$KanbanEventTearOff {
-  const _$KanbanEventTearOff();
-
-  GetColumns getColumns() {
-    return const GetColumns();
-  }
-
-  AddColumn addColumn(String title) {
-    return AddColumn(
-      title,
-    );
-  }
-
-  DeleteTask deleteTask(int column, KTask task) {
-    return DeleteTask(
-      column,
-      task,
-    );
-  }
-
-  ReorderTask reorderTask(int column, int from, int to) {
-    return ReorderTask(
-      column,
-      from,
-      to,
-    );
-  }
-
-  MoveTask moveTask(KData data) {
-    return MoveTask(
-      data,
-    );
-  }
-
-  AddTask addTask(int column, String title) {
-    return AddTask(
-      column,
-      title,
-    );
-  }
+/// @nodoc
+abstract class $KanbanEventCopyWith<$Res> {
+  factory $KanbanEventCopyWith(
+          KanbanEvent value, $Res Function(KanbanEvent) then) =
+      _$KanbanEventCopyWithImpl<$Res, KanbanEvent>;
 }
 
-const $KanbanEvent = _$KanbanEventTearOff();
+/// @nodoc
+class _$KanbanEventCopyWithImpl<$Res, $Val extends KanbanEvent>
+    implements $KanbanEventCopyWith<$Res> {
+  _$KanbanEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetColumnsCopyWith<$Res> {
+  factory _$$GetColumnsCopyWith(
+          _$GetColumns value, $Res Function(_$GetColumns) then) =
+      __$$GetColumnsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetColumnsCopyWithImpl<$Res>
+    extends _$KanbanEventCopyWithImpl<$Res, _$GetColumns>
+    implements _$$GetColumnsCopyWith<$Res> {
+  __$$GetColumnsCopyWithImpl(
+      _$GetColumns _value, $Res Function(_$GetColumns) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
 
 class _$GetColumns implements GetColumns {
   const _$GetColumns();
@@ -105,7 +126,8 @@ class _$GetColumns implements GetColumns {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GetColumns);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetColumns);
   }
 
   @override
@@ -113,35 +135,41 @@ class _$GetColumns implements GetColumns {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return getColumns();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
   }) {
-    assert(orElse != null);
+    return getColumns?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
+  }) {
     if (getColumns != null) {
       return getColumns();
     }
@@ -150,35 +178,41 @@ class _$GetColumns implements GetColumns {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return getColumns(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
   }) {
-    assert(orElse != null);
+    return getColumns?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) {
     if (getColumns != null) {
       return getColumns(this);
     }
@@ -190,8 +224,41 @@ abstract class GetColumns implements KanbanEvent {
   const factory GetColumns() = _$GetColumns;
 }
 
+/// @nodoc
+abstract class _$$AddColumnCopyWith<$Res> {
+  factory _$$AddColumnCopyWith(
+          _$AddColumn value, $Res Function(_$AddColumn) then) =
+      __$$AddColumnCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title});
+}
+
+/// @nodoc
+class __$$AddColumnCopyWithImpl<$Res>
+    extends _$KanbanEventCopyWithImpl<$Res, _$AddColumn>
+    implements _$$AddColumnCopyWith<$Res> {
+  __$$AddColumnCopyWithImpl(
+      _$AddColumn _value, $Res Function(_$AddColumn) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+  }) {
+    return _then(_$AddColumn(
+      null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
 class _$AddColumn implements AddColumn {
-  const _$AddColumn(this.title) : assert(title != null);
+  const _$AddColumn(this.title);
 
   @override
   final String title;
@@ -204,55 +271,57 @@ class _$AddColumn implements AddColumn {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AddColumn &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)));
+        (other.runtimeType == runtimeType &&
+            other is _$AddColumn &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(title);
+  int get hashCode => Object.hash(runtimeType, title);
 
+  @JsonKey(ignore: true)
   @override
-  _$AddColumn copyWith({
-    Object title = freezed,
-  }) {
-    return _$AddColumn(
-      title == freezed ? this.title : title as String,
-    );
-  }
+  @pragma('vm:prefer-inline')
+  _$$AddColumnCopyWith<_$AddColumn> get copyWith =>
+      __$$AddColumnCopyWithImpl<_$AddColumn>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return addColumn(title);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
   }) {
-    assert(orElse != null);
+    return addColumn?.call(title);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
+  }) {
     if (addColumn != null) {
       return addColumn(title);
     }
@@ -261,35 +330,41 @@ class _$AddColumn implements AddColumn {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return addColumn(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
   }) {
-    assert(orElse != null);
+    return addColumn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) {
     if (addColumn != null) {
       return addColumn(this);
     }
@@ -298,17 +373,64 @@ class _$AddColumn implements AddColumn {
 }
 
 abstract class AddColumn implements KanbanEvent {
-  const factory AddColumn(String title) = _$AddColumn;
+  const factory AddColumn(final String title) = _$AddColumn;
 
   String get title;
-
-  AddColumn copyWith({String title});
+  @JsonKey(ignore: true)
+  _$$AddColumnCopyWith<_$AddColumn> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+abstract class _$$DeleteTaskCopyWith<$Res> {
+  factory _$$DeleteTaskCopyWith(
+          _$DeleteTask value, $Res Function(_$DeleteTask) then) =
+      __$$DeleteTaskCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int column, KTask task});
+
+  $KTaskCopyWith<$Res> get task;
+}
+
+/// @nodoc
+class __$$DeleteTaskCopyWithImpl<$Res>
+    extends _$KanbanEventCopyWithImpl<$Res, _$DeleteTask>
+    implements _$$DeleteTaskCopyWith<$Res> {
+  __$$DeleteTaskCopyWithImpl(
+      _$DeleteTask _value, $Res Function(_$DeleteTask) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? column = null,
+    Object? task = null,
+  }) {
+    return _then(_$DeleteTask(
+      null == column
+          ? _value.column
+          : column // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == task
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as KTask,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $KTaskCopyWith<$Res> get task {
+    return $KTaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
+  }
+}
+
+/// @nodoc
+
 class _$DeleteTask implements DeleteTask {
-  const _$DeleteTask(this.column, this.task)
-      : assert(column != null),
-        assert(task != null);
+  const _$DeleteTask(this.column, this.task);
 
   @override
   final int column;
@@ -323,61 +445,58 @@ class _$DeleteTask implements DeleteTask {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DeleteTask &&
-            (identical(other.column, column) ||
-                const DeepCollectionEquality().equals(other.column, column)) &&
-            (identical(other.task, task) ||
-                const DeepCollectionEquality().equals(other.task, task)));
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteTask &&
+            (identical(other.column, column) || other.column == column) &&
+            (identical(other.task, task) || other.task == task));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(column) ^
-      const DeepCollectionEquality().hash(task);
+  int get hashCode => Object.hash(runtimeType, column, task);
 
+  @JsonKey(ignore: true)
   @override
-  _$DeleteTask copyWith({
-    Object column = freezed,
-    Object task = freezed,
-  }) {
-    return _$DeleteTask(
-      column == freezed ? this.column : column as int,
-      task == freezed ? this.task : task as KTask,
-    );
-  }
+  @pragma('vm:prefer-inline')
+  _$$DeleteTaskCopyWith<_$DeleteTask> get copyWith =>
+      __$$DeleteTaskCopyWithImpl<_$DeleteTask>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return deleteTask(column, task);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
   }) {
-    assert(orElse != null);
+    return deleteTask?.call(column, task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
+  }) {
     if (deleteTask != null) {
       return deleteTask(column, task);
     }
@@ -386,35 +505,41 @@ class _$DeleteTask implements DeleteTask {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return deleteTask(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
   }) {
-    assert(orElse != null);
+    return deleteTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) {
     if (deleteTask != null) {
       return deleteTask(this);
     }
@@ -423,19 +548,60 @@ class _$DeleteTask implements DeleteTask {
 }
 
 abstract class DeleteTask implements KanbanEvent {
-  const factory DeleteTask(int column, KTask task) = _$DeleteTask;
+  const factory DeleteTask(final int column, final KTask task) = _$DeleteTask;
 
   int get column;
   KTask get task;
-
-  DeleteTask copyWith({int column, KTask task});
+  @JsonKey(ignore: true)
+  _$$DeleteTaskCopyWith<_$DeleteTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+abstract class _$$ReorderTaskCopyWith<$Res> {
+  factory _$$ReorderTaskCopyWith(
+          _$ReorderTask value, $Res Function(_$ReorderTask) then) =
+      __$$ReorderTaskCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int column, int from, int to});
+}
+
+/// @nodoc
+class __$$ReorderTaskCopyWithImpl<$Res>
+    extends _$KanbanEventCopyWithImpl<$Res, _$ReorderTask>
+    implements _$$ReorderTaskCopyWith<$Res> {
+  __$$ReorderTaskCopyWithImpl(
+      _$ReorderTask _value, $Res Function(_$ReorderTask) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? column = null,
+    Object? from = null,
+    Object? to = null,
+  }) {
+    return _then(_$ReorderTask(
+      null == column
+          ? _value.column
+          : column // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == from
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == to
+          ? _value.to
+          : to // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
 class _$ReorderTask implements ReorderTask {
-  const _$ReorderTask(this.column, this.from, this.to)
-      : assert(column != null),
-        assert(from != null),
-        assert(to != null);
+  const _$ReorderTask(this.column, this.from, this.to);
 
   @override
   final int column;
@@ -452,66 +618,59 @@ class _$ReorderTask implements ReorderTask {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReorderTask &&
-            (identical(other.column, column) ||
-                const DeepCollectionEquality().equals(other.column, column)) &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.to, to) ||
-                const DeepCollectionEquality().equals(other.to, to)));
+        (other.runtimeType == runtimeType &&
+            other is _$ReorderTask &&
+            (identical(other.column, column) || other.column == column) &&
+            (identical(other.from, from) || other.from == from) &&
+            (identical(other.to, to) || other.to == to));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(column) ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(to);
+  int get hashCode => Object.hash(runtimeType, column, from, to);
 
+  @JsonKey(ignore: true)
   @override
-  _$ReorderTask copyWith({
-    Object column = freezed,
-    Object from = freezed,
-    Object to = freezed,
-  }) {
-    return _$ReorderTask(
-      column == freezed ? this.column : column as int,
-      from == freezed ? this.from : from as int,
-      to == freezed ? this.to : to as int,
-    );
-  }
+  @pragma('vm:prefer-inline')
+  _$$ReorderTaskCopyWith<_$ReorderTask> get copyWith =>
+      __$$ReorderTaskCopyWithImpl<_$ReorderTask>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return reorderTask(column, from, to);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
   }) {
-    assert(orElse != null);
+    return reorderTask?.call(column, from, to);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
+  }) {
     if (reorderTask != null) {
       return reorderTask(column, from, to);
     }
@@ -520,35 +679,41 @@ class _$ReorderTask implements ReorderTask {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return reorderTask(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
   }) {
-    assert(orElse != null);
+    return reorderTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) {
     if (reorderTask != null) {
       return reorderTask(this);
     }
@@ -557,115 +722,175 @@ class _$ReorderTask implements ReorderTask {
 }
 
 abstract class ReorderTask implements KanbanEvent {
-  const factory ReorderTask(int column, int from, int to) = _$ReorderTask;
+  const factory ReorderTask(final int column, final int from, final int to) =
+      _$ReorderTask;
 
   int get column;
   int get from;
   int get to;
-
-  ReorderTask copyWith({int column, int from, int to});
+  @JsonKey(ignore: true)
+  _$$ReorderTaskCopyWith<_$ReorderTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+abstract class _$$MoveTaskCopyWith<$Res> {
+  factory _$$MoveTaskCopyWith(
+          _$MoveTask value, $Res Function(_$MoveTask) then) =
+      __$$MoveTaskCopyWithImpl<$Res>;
+  @useResult
+  $Res call({KData data, int column});
+
+  $KDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$MoveTaskCopyWithImpl<$Res>
+    extends _$KanbanEventCopyWithImpl<$Res, _$MoveTask>
+    implements _$$MoveTaskCopyWith<$Res> {
+  __$$MoveTaskCopyWithImpl(_$MoveTask _value, $Res Function(_$MoveTask) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? column = null,
+  }) {
+    return _then(_$MoveTask(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as KData,
+      null == column
+          ? _value.column
+          : column // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $KDataCopyWith<$Res> get data {
+    return $KDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
 class _$MoveTask implements MoveTask {
-  const _$MoveTask(this.data) : assert(data != null);
+  const _$MoveTask(this.data, this.column);
 
   @override
   final KData data;
+  @override
+  final int column;
 
   @override
   String toString() {
-    return 'KanbanEvent.moveTask(data: $data)';
+    return 'KanbanEvent.moveTask(data: $data, column: $column)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MoveTask &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _$MoveTask &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.column, column) || other.column == column));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data, column);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MoveTaskCopyWith<_$MoveTask> get copyWith =>
+      __$$MoveTaskCopyWithImpl<_$MoveTask>(this, _$identity);
 
   @override
-  _$MoveTask copyWith({
-    Object data = freezed,
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
   }) {
-    return _$MoveTask(
-      data == freezed ? this.data : data as KData,
-    );
+    return moveTask(data, column);
   }
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
-    return moveTask(data);
+    return moveTask?.call(data, column);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (moveTask != null) {
-      return moveTask(data);
+      return moveTask(data, column);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return moveTask(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
   }) {
-    assert(orElse != null);
+    return moveTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) {
     if (moveTask != null) {
       return moveTask(this);
     }
@@ -674,17 +899,53 @@ class _$MoveTask implements MoveTask {
 }
 
 abstract class MoveTask implements KanbanEvent {
-  const factory MoveTask(KData data) = _$MoveTask;
+  const factory MoveTask(final KData data, final int column) = _$MoveTask;
 
   KData get data;
-
-  MoveTask copyWith({KData data});
+  int get column;
+  @JsonKey(ignore: true)
+  _$$MoveTaskCopyWith<_$MoveTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+abstract class _$$AddTaskCopyWith<$Res> {
+  factory _$$AddTaskCopyWith(_$AddTask value, $Res Function(_$AddTask) then) =
+      __$$AddTaskCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int column, String title});
+}
+
+/// @nodoc
+class __$$AddTaskCopyWithImpl<$Res>
+    extends _$KanbanEventCopyWithImpl<$Res, _$AddTask>
+    implements _$$AddTaskCopyWith<$Res> {
+  __$$AddTaskCopyWithImpl(_$AddTask _value, $Res Function(_$AddTask) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? column = null,
+    Object? title = null,
+  }) {
+    return _then(_$AddTask(
+      null == column
+          ? _value.column
+          : column // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
 class _$AddTask implements AddTask {
-  const _$AddTask(this.column, this.title)
-      : assert(column != null),
-        assert(title != null);
+  const _$AddTask(this.column, this.title);
 
   @override
   final int column;
@@ -699,61 +960,58 @@ class _$AddTask implements AddTask {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AddTask &&
-            (identical(other.column, column) ||
-                const DeepCollectionEquality().equals(other.column, column)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)));
+        (other.runtimeType == runtimeType &&
+            other is _$AddTask &&
+            (identical(other.column, column) || other.column == column) &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(column) ^
-      const DeepCollectionEquality().hash(title);
+  int get hashCode => Object.hash(runtimeType, column, title);
 
+  @JsonKey(ignore: true)
   @override
-  _$AddTask copyWith({
-    Object column = freezed,
-    Object title = freezed,
-  }) {
-    return _$AddTask(
-      column == freezed ? this.column : column as int,
-      title == freezed ? this.title : title as String,
-    );
-  }
+  @pragma('vm:prefer-inline')
+  _$$AddTaskCopyWith<_$AddTask> get copyWith =>
+      __$$AddTaskCopyWithImpl<_$AddTask>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getColumns(),
-    @required Result addColumn(String title),
-    @required Result deleteTask(int column, KTask task),
-    @required Result reorderTask(int column, int from, int to),
-    @required Result moveTask(KData data),
-    @required Result addTask(int column, String title),
+  TResult when<TResult extends Object?>({
+    required TResult Function() getColumns,
+    required TResult Function(String title) addColumn,
+    required TResult Function(int column, KTask task) deleteTask,
+    required TResult Function(int column, int from, int to) reorderTask,
+    required TResult Function(KData data, int column) moveTask,
+    required TResult Function(int column, String title) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return addTask(column, title);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getColumns(),
-    Result addColumn(String title),
-    Result deleteTask(int column, KTask task),
-    Result reorderTask(int column, int from, int to),
-    Result moveTask(KData data),
-    Result addTask(int column, String title),
-    @required Result orElse(),
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getColumns,
+    TResult? Function(String title)? addColumn,
+    TResult? Function(int column, KTask task)? deleteTask,
+    TResult? Function(int column, int from, int to)? reorderTask,
+    TResult? Function(KData data, int column)? moveTask,
+    TResult? Function(int column, String title)? addTask,
   }) {
-    assert(orElse != null);
+    return addTask?.call(column, title);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getColumns,
+    TResult Function(String title)? addColumn,
+    TResult Function(int column, KTask task)? deleteTask,
+    TResult Function(int column, int from, int to)? reorderTask,
+    TResult Function(KData data, int column)? moveTask,
+    TResult Function(int column, String title)? addTask,
+    required TResult orElse(),
+  }) {
     if (addTask != null) {
       return addTask(column, title);
     }
@@ -762,35 +1020,41 @@ class _$AddTask implements AddTask {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getColumns(GetColumns value),
-    @required Result addColumn(AddColumn value),
-    @required Result deleteTask(DeleteTask value),
-    @required Result reorderTask(ReorderTask value),
-    @required Result moveTask(MoveTask value),
-    @required Result addTask(AddTask value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetColumns value) getColumns,
+    required TResult Function(AddColumn value) addColumn,
+    required TResult Function(DeleteTask value) deleteTask,
+    required TResult Function(ReorderTask value) reorderTask,
+    required TResult Function(MoveTask value) moveTask,
+    required TResult Function(AddTask value) addTask,
   }) {
-    assert(getColumns != null);
-    assert(addColumn != null);
-    assert(deleteTask != null);
-    assert(reorderTask != null);
-    assert(moveTask != null);
-    assert(addTask != null);
     return addTask(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getColumns(GetColumns value),
-    Result addColumn(AddColumn value),
-    Result deleteTask(DeleteTask value),
-    Result reorderTask(ReorderTask value),
-    Result moveTask(MoveTask value),
-    Result addTask(AddTask value),
-    @required Result orElse(),
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetColumns value)? getColumns,
+    TResult? Function(AddColumn value)? addColumn,
+    TResult? Function(DeleteTask value)? deleteTask,
+    TResult? Function(ReorderTask value)? reorderTask,
+    TResult? Function(MoveTask value)? moveTask,
+    TResult? Function(AddTask value)? addTask,
   }) {
-    assert(orElse != null);
+    return addTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetColumns value)? getColumns,
+    TResult Function(AddColumn value)? addColumn,
+    TResult Function(DeleteTask value)? deleteTask,
+    TResult Function(ReorderTask value)? reorderTask,
+    TResult Function(MoveTask value)? moveTask,
+    TResult Function(AddTask value)? addTask,
+    required TResult orElse(),
+  }) {
     if (addTask != null) {
       return addTask(this);
     }
@@ -799,10 +1063,11 @@ class _$AddTask implements AddTask {
 }
 
 abstract class AddTask implements KanbanEvent {
-  const factory AddTask(int column, String title) = _$AddTask;
+  const factory AddTask(final int column, final String title) = _$AddTask;
 
   int get column;
   String get title;
-
-  AddTask copyWith({int column, String title});
+  @JsonKey(ignore: true)
+  _$$AddTaskCopyWith<_$AddTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }
