@@ -36,9 +36,9 @@ class KanbanColumn extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _title(),
-                _listItems(),
-                _buttonNewTask(index),
+                _buildTitleColumn(),
+                _buildListItemsColumn(),
+                _buildButtonNewTask(index),
               ],
             ),
           ),
@@ -64,55 +64,61 @@ class KanbanColumn extends StatelessWidget {
     );
   }
 
-  Widget _title() => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          column.title,
-          style: const TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-          ),
+  Widget _buildTitleColumn() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        column.title,
+        style: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.w700,
         ),
-      );
+      ),
+    );
+  }
 
-  Widget _listItems() => Expanded(
-        child: ReorderableListView(
-          onReorder: (oldIndex, newIndex) {
-            if (newIndex < column.children.length) {
-              reorderHandler(oldIndex, newIndex, index);
-            }
-          },
-          children: [
-            for (final task in column.children)
-              TaskCard(
-                key: ValueKey(task),
-                task: task,
-                columnIndex: index,
-                dragListener: dragListener,
-                deleteItemHandler: deleteItemHandler,
-              )
-          ],
-        ),
-      );
-
-  Widget _buttonNewTask(int index) => ListTile(
-        dense: true,
-        onTap: () {
-          addTaskHandler(index);
+  Widget _buildListItemsColumn() {
+    return Expanded(
+      child: ReorderableListView(
+        onReorder: (oldIndex, newIndex) {
+          if (newIndex < column.children.length) {
+            reorderHandler(oldIndex, newIndex, index);
+          }
         },
-        leading: const Icon(
-          Icons.add_circle_outline,
+        children: [
+          for (final task in column.children)
+            TaskCard(
+              key: ValueKey(task),
+              task: task,
+              columnIndex: index,
+              dragListener: dragListener,
+              deleteItemHandler: deleteItemHandler,
+            )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButtonNewTask(int index) {
+    return ListTile(
+      dense: true,
+      onTap: () {
+        addTaskHandler(index);
+      },
+      leading: const Icon(
+        Icons.add_circle_outline,
+        color: Colors.black45,
+        size: 24.0,
+      ),
+      title: const Text(
+        'Add Task',
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
           color: Colors.black45,
-          size: 24.0,
         ),
-        title: const Text(
-          'Add Task',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: Colors.black45,
-          ),
-        ),
-      );
+      ),
+    );
+  }
 }

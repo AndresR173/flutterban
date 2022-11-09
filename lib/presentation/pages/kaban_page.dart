@@ -18,14 +18,8 @@ class KanbanPage extends StatefulWidget {
   _KanbanPageState createState() => _KanbanPageState();
 }
 
-class _KanbanPageState extends State<KanbanPage> {
-  late final ScrollController _scrollController;
-
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    super.initState();
-  }
+class _KanbanPageState extends State<KanbanPage> with TickerProviderStateMixin {
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void dispose() {

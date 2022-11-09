@@ -11,13 +11,7 @@ class AddTaskForm extends StatefulWidget {
 }
 
 class _AddTaskFormState extends State<AddTaskForm> {
-  late final TextEditingController _textController;
-
-  @override
-  void initState() {
-    _textController = TextEditingController();
-    super.initState();
-  }
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void dispose() {

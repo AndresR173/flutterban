@@ -11,13 +11,7 @@ class AddColumnForm extends StatefulWidget {
 }
 
 class _AddColumnFormState extends State<AddColumnForm> {
-  late final TextEditingController _textController;
-
-  @override
-  void initState() {
-    _textController = TextEditingController();
-    super.initState();
-  }
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void dispose() {
