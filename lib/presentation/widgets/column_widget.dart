@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/models.dart';
+import 'card_column.dart';
 import 'task_card_widget.dart';
 
 class KanbanColumn extends StatelessWidget {
@@ -9,7 +10,7 @@ class KanbanColumn extends StatelessWidget {
   final Function dragHandler;
   final Function reorderHandler;
   final Function addTaskHandler;
-  final Function dragListener;
+  final Function(DragUpdateDetails) dragListener;
   final Function deleteItemHandler;
 
   const KanbanColumn({
@@ -27,85 +28,17 @@ class KanbanColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          width: 300.0,
-          decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 8,
-                color: Colors.black12,
-                spreadRadius: 1,
-              )
-            ],
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
-          ),
-          margin: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  column.title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Montserrat',
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ReorderableListView(
-                  onReorder: (oldIndex, newIndex) {
-                    if (newIndex < column.children.length) {
-                      reorderHandler(oldIndex, newIndex, index);
-                    }
-                  },
-                  children: [
-                    for (final task in column.children)
-                      TaskCard(
-                        key: ValueKey(task),
-                        task: task,
-                        columnIndex: index,
-                        dragListener: dragListener,
-                        deleteItemHandler: deleteItemHandler,
-                      )
-                  ],
-                ),
-              ),
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    addTaskHandler(index);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        'Add Task',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Montserrat',
-                          color: Colors.black45,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Icon(
-                          Icons.add_circle_outline,
-                          color: Colors.black45,
-                          size: 24.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
+        CardColumn(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildTitleColumn(),
+                _buildListItemsColumn(),
+                _buildButtonNewTask(index),
+              ],
+            ),
           ),
         ),
         Positioned.fill(
@@ -121,11 +54,69 @@ class KanbanColumn extends StatelessWidget {
               dragHandler(data, index);
             },
             builder: (context, accept, reject) {
-              return Container();
+              return const SizedBox();
             },
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTitleColumn() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        column.title,
+        style: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildListItemsColumn() {
+    return Expanded(
+      child: ReorderableListView(
+        onReorder: (oldIndex, newIndex) {
+          if (newIndex < column.children.length) {
+            reorderHandler(oldIndex, newIndex, index);
+          }
+        },
+        children: [
+          for (final task in column.children)
+            TaskCard(
+              key: ValueKey(task),
+              task: task,
+              columnIndex: index,
+              dragListener: dragListener,
+              deleteItemHandler: deleteItemHandler,
+            )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButtonNewTask(int index) {
+    return ListTile(
+      dense: true,
+      onTap: () {
+        addTaskHandler(index);
+      },
+      leading: const Icon(
+        Icons.add_circle_outline,
+        color: Colors.black45,
+        size: 24.0,
+      ),
+      title: const Text(
+        'Add Task',
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Colors.black45,
+        ),
+      ),
     );
   }
 }

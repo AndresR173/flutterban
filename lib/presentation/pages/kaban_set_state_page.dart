@@ -53,10 +53,10 @@ class _KanbanSetStatePageState extends State<KanbanSetStatePage> {
     );
   }
 
-  void _dragListener(PointerMoveEvent event) {
-    if (event.position.dx > MediaQuery.of(context).size.width - 20) {
+  void _dragListener(DragUpdateDetails details) {
+    if (details.localPosition.dx > MediaQuery.of(context).size.width - 40) {
       _scrollController.jumpTo(_scrollController.offset + 10);
-    } else if (event.position.dx < 20) {
+    } else if (details.localPosition.dx < 20) {
       _scrollController.jumpTo(_scrollController.offset - 10);
     }
   }
@@ -66,7 +66,7 @@ class _KanbanSetStatePageState extends State<KanbanSetStatePage> {
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      builder: (context) => AddColumn(
+      builder: (context) => AddColumnForm(
         addColumnHandler: (String title) {
           setState(() {
             columns.add(KColumn(title: title, children: []));
@@ -81,7 +81,7 @@ class _KanbanSetStatePageState extends State<KanbanSetStatePage> {
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      builder: (context) => AddTask(
+      builder: (context) => AddTaskForm(
         addTaskHandler: (String title) {
           setState(() {
             columns[index].children.add(KTask(title: title));

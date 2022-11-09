@@ -9,36 +9,29 @@ class TaskMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              bottom: 20,
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pop();
-                deleteHandler();
-              },
-              child: const SizedBox(
-                height: 40,
-                child: Text(
-                  'Delete Task',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Montserrat',
-                    color: Colors.red,
-                  ),
-                ),
+    final double paddingBottom = MediaQuery.of(context).padding.bottom;
+    return IntrinsicHeight(
+      child: Container(
+        color: Colors.white,
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 30, bottom: paddingBottom + 6),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).pop();
+            deleteHandler();
+          },
+          child: const SizedBox(
+            height: 40,
+            child: Text(
+              'Delete Task',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.red,
               ),
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
