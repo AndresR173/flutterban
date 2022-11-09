@@ -19,13 +19,18 @@ class KanbanPage extends StatefulWidget {
 }
 
 class _KanbanPageState extends State<KanbanPage> {
-  final ScrollController _scrollController = ScrollController();
-  late KanbanBloc _bloc;
+  late final ScrollController _scrollController;
 
   @override
   void initState() {
+    _scrollController = ScrollController();
     super.initState();
-    _bloc = context.read<KanbanBloc>();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,10 +54,12 @@ class _KanbanPageState extends State<KanbanPage> {
               case Status.loaded:
                 if (state.columns.isNotEmpty) {
                   final columns = state.columns;
-                  return ListView.builder(
+                  return ListView.separated(
                     controller: _scrollController,
                     scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.all(16),
                     itemCount: columns.length + 1,
+                    separatorBuilder: (_, __) => const SizedBox(width: 16),
                     itemBuilder: (context, index) {
                       if (index == columns.length) {
                         return AddColumnButton(
@@ -72,7 +79,7 @@ class _KanbanPageState extends State<KanbanPage> {
                     },
                   );
                 } else {
-                  return Container();
+                  return const SizedBox.shrink();
                 }
             }
           },
@@ -81,10 +88,10 @@ class _KanbanPageState extends State<KanbanPage> {
     );
   }
 
-  void _dragListener(PointerMoveEvent event) {
-    if (event.position.dx > MediaQuery.of(context).size.width - 20) {
+  void _dragListener(DragUpdateDetails details) {
+    if (details.localPosition.dx > MediaQuery.of(context).size.width - 40) {
       _scrollController.jumpTo(_scrollController.offset + 10);
-    } else if (event.position.dx < 20) {
+    } else if (details.localPosition.dx < 20) {
       _scrollController.jumpTo(_scrollController.offset - 10);
     }
   }
@@ -92,11 +99,18 @@ class _KanbanPageState extends State<KanbanPage> {
   void _showAddColumn() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
       isScrollControlled: true,
+      backgroundColor: Colors.white,
+      clipBehavior: Clip.hardEdge,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
       builder: (context) => AddColumnForm(
         addColumnHandler: (String title) {
-          _bloc.add(KanbanEvent.addColumn(title));
+          context.read<KanbanBloc>().add(KanbanEvent.addColumn(title));
         },
       ),
     );
@@ -105,27 +119,36 @@ class _KanbanPageState extends State<KanbanPage> {
   void _showAddTask(int index) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
       isScrollControlled: true,
+      backgroundColor: Colors.white,
+      clipBehavior: Clip.hardEdge,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
       builder: (context) => AddTaskForm(
         addTaskHandler: (String title) {
-          _bloc.add(KanbanEvent.addTask(index, title));
+          context.read<KanbanBloc>().add(KanbanEvent.addTask(index, title));
         },
       ),
     );
   }
 
   void _deleteItem(int columnIndex, KTask task) {
-    _bloc.add(KanbanEvent.deleteTask(columnIndex, task));
+    context.read<KanbanBloc>().add(KanbanEvent.deleteTask(columnIndex, task));
   }
 
   // Drag methods
 
   void _handleReOrder(int oldIndex, int newIndex, int column) {
-    _bloc.add(KanbanEvent.reorderTask(column, oldIndex, newIndex));
+    context
+        .read<KanbanBloc>()
+        .add(KanbanEvent.reorderTask(column, oldIndex, newIndex));
   }
 
   void _handleDrag(KData data, int index) {
-    _bloc.add(KanbanEvent.moveTask(data, index));
+    context.read<KanbanBloc>().add(KanbanEvent.moveTask(data, index));
   }
 }
