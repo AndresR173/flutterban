@@ -16,9 +16,9 @@ Go to the different branches and check how to implement each state management
 
 # Android Preview
 
-<video width="320" controls>
-  <source src="temp_assets/flutterban_android.mov" type="video/mp4">
-</video>
+https://user-images.githubusercontent.com/10689052/200735065-781303ba-a701-4830-aef7-43265e8b4206.mov
+
+
 
 # License
 
