@@ -31,15 +31,7 @@ class _AddTaskState extends State<AddTask> {
               children: <Widget>[
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Add Task',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Montserrat',
-                      color: Colors.black54,
-                    ),
-                  ),
+                  child: Text('Add Task'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -67,26 +59,14 @@ class _AddTaskState extends State<AddTask> {
                     child: ButtonTheme(
                       minWidth: 200,
                       height: 50,
-                      child: MaterialButton(
-                        textColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: const BorderSide(color: Colors.red)),
-                        color: Colors.red,
+                      child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState?.validate() ?? false) {
                             Navigator.of(context).pop();
                             widget.addTaskHandler(_textController.text.trim());
                           }
                         },
-                        child: const Text(
-                          'Add',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Montserrat',
-                          ),
-                        ),
+                        child: const Text('Add'),
                       ),
                     ),
                   ),
