@@ -14,6 +14,10 @@ Go to the different branches and check how to implement each state management
 
 [mobx](https://github.com/AndresR173/flutterban/tree/mobx): Reference [Mobx](https://pub.dev/packages/flutter_mobx)
 
+# Android Preview
+
+https://user-images.githubusercontent.com/5528401/200735853-3a58016a-d7fb-41eb-a93c-3cdb18fcd498.mov
+
 # License
 
 MIT License
