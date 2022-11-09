@@ -15,7 +15,6 @@ class TaskText extends StatelessWidget {
       style: const TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.w500,
-        fontFamily: 'Montserrat',
         color: Colors.white,
       ),
     );

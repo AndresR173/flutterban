@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/data.dart';
-import '../../domain/entities/task.dart';
+import '../../models/models.dart';
 import 'taks_menu.widget.dart';
 import 'task_text_widget.dart';
 
 class TaskCard extends StatelessWidget {
   final KTask task;
   final int columnIndex;
-  final Function dragListener;
   final Function deleteItemHandler;
+  final Function(DragUpdateDetails) dragListener;
 
   const TaskCard({
     super.key,
@@ -21,68 +20,56 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300.0,
-      height: 50,
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: Listener(
-        onPointerMove: (PointerMoveEvent event) {
-          dragListener(event);
-        },
-        child: Draggable<KData>(
-          feedback: Material(
-            elevation: 5.0,
+    return LayoutBuilder(
+      builder: (BuildContext _, BoxConstraints constraints) {
+        return Container(
+          height: 50,
+          clipBehavior: Clip.hardEdge,
+          margin: const EdgeInsets.symmetric(vertical: 6.0),
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: Colors.transparent,
+          ),
+          child: Draggable<KData>(
+            onDragUpdate: dragListener,
+            feedback: Material(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(10.0),
+              child: Container(
+                height: 50,
+                width: constraints.maxWidth,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 16),
+                child: TaskText(
+                  title: task.title,
+                ),
+              ),
+            ),
+            childWhenDragging: Container(color: Colors.black12),
+            data: KData(from: columnIndex, task: task),
             child: Container(
-              width: 200.0,
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0), color: Colors.red),
-              child: TaskText(
-                title: task.title,
+              color: Colors.red,
+              child: ListTile(
+                dense: true,
+                title: TaskText(
+                  title: task.title,
+                ),
+                trailing: InkWell(
+                  onTap: () => showModalBottomSheet(
+                    context: context,
+                    builder: (context) => TaskMenu(
+                      deleteHandler: () => deleteItemHandler(columnIndex, task),
+                    ),
+                  ),
+                  child: const Icon(
+                    color: Colors.white,
+                    Icons.more_horiz,
+                  ),
+                ),
               ),
             ),
           ),
-          childWhenDragging: Container(
-            padding: const EdgeInsets.all(16.0),
-            width: 200.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.black12),
-          ),
-          data: KData(from: columnIndex, task: task),
-          child: Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0), color: Colors.red),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: TaskText(
-                    title: task.title,
-                  ),
-                ),
-                InkWell(
-                  child: const Icon(
-                    Icons.more_horiz,
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) => TaskMenu(
-                        deleteHandler: () =>
-                            deleteItemHandler(columnIndex, task),
-                      ),
-                    );
-                  },
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
