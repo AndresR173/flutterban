@@ -21,10 +21,11 @@ class _KanbanSetStatePageState extends State<KanbanSetStatePage>
         title: const Text('Set State'),
       ),
       body: SafeArea(
-          child: KanbanBoard(
-        columns: columns,
-        controller: this,
-      )),
+        child: KanbanBoard(
+          columns: columns,
+          controller: this,
+        ),
+      ),
     );
   }
 
@@ -56,7 +57,9 @@ class _KanbanSetStatePageState extends State<KanbanSetStatePage>
   @override
   void addColumn(String title) {
     setState(() {
-      columns.add(KColumn(title: title));
+      columns.add(KColumn(
+        title: title,
+      ));
     });
   }
 

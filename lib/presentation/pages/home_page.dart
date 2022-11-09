@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../state_managers/bloc/kanban_bloc.dart';
 import 'kaban_set_state_page.dart';
 import 'kanban_bloc_page.dart';
+import 'kanban_mobx_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,16 +17,14 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTile(
-            title: const Text('Set State'),
+          _buildListTile(
+            title: 'Set State',
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const KanbanSetStatePage()),
             ),
-            trailing: const Icon(Icons.chevron_right),
           ),
-          ListTile(
-            title: const Text('Bloc'),
-            trailing: const Icon(Icons.chevron_right),
+          _buildListTile(
+            title: 'Bloc',
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) {
@@ -41,8 +40,22 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          _buildListTile(
+            title: 'MobX',
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => KanbanMobxPage()),
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildListTile({required String title, required VoidCallback onTap}) {
+    return ListTile(
+      title: Text(title),
+      onTap: onTap,
+      trailing: const Icon(Icons.chevron_right),
     );
   }
 }
