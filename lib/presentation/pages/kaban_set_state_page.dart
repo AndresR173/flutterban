@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../data/data.dart';
 import '../../models/models.dart';
-import '../widgets/add_column_button_widget.dart';
-import '../widgets/add_column_widget.dart';
-import '../widgets/add_task_widget.dart';
-import '../widgets/column_widget.dart';
+import '../widgets/kanban_board.dart';
+import 'kanban_board_controller.dart';
 
 class KanbanSetStatePage extends StatefulWidget {
   const KanbanSetStatePage({super.key});
@@ -15,104 +12,66 @@ class KanbanSetStatePage extends StatefulWidget {
   _KanbanSetStatePageState createState() => _KanbanSetStatePageState();
 }
 
-class _KanbanSetStatePageState extends State<KanbanSetStatePage> {
-  final ScrollController _scrollController = ScrollController();
-
+class _KanbanSetStatePageState extends State<KanbanSetStatePage>
+    implements KanbanBoardController {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white, // Color for Android
-        statusBarBrightness:
-            Brightness.light, // Dark == white status bar -- for IOS.
-      ),
-    );
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Set State'),
+      ),
       body: SafeArea(
-        child: ListView.builder(
-          controller: _scrollController,
-          scrollDirection: Axis.horizontal,
-          itemCount: columns.length + 1,
-          itemBuilder: (context, index) {
-            if (index == columns.length) {
-              return AddColumnButton(addColumnAction: _showAddColumn);
-            } else {
-              return KanbanColumn(
-                column: columns[index],
-                index: index,
-                dragHandler: _handleDrag,
-                reorderHandler: _handleReOrder,
-                addTaskHandler: _showAddTask,
-                dragListener: _dragListener,
-                deleteItemHandler: _deleteItem,
-              );
-            }
-          },
-        ),
-      ),
+          child: KanbanBoard(
+        columns: columns,
+        controller: this,
+      )),
     );
   }
 
-  void _dragListener(DragUpdateDetails details) {
-    if (details.localPosition.dx > MediaQuery.of(context).size.width - 40) {
-      _scrollController.jumpTo(_scrollController.offset + 10);
-    } else if (details.localPosition.dx < 20) {
-      _scrollController.jumpTo(_scrollController.offset - 10);
-    }
-  }
-
-  void _showAddColumn() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) => AddColumnForm(
-        addColumnHandler: (String title) {
-          setState(() {
-            columns.add(KColumn(title: title, children: []));
-          });
-        },
-      ),
-    );
-  }
-
-  void _showAddTask(int index) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) => AddTaskForm(
-        addTaskHandler: (String title) {
-          setState(() {
-            columns[index].children.add(KTask(title: title));
-          });
-        },
-      ),
-    );
-  }
-
-  void _deleteItem(int columnIndex, KTask task) {
+  @override
+  void deleteItem(int columnIndex, KTask task) {
     setState(() {
       columns[columnIndex].children.remove(task);
     });
   }
 
-  // Drag methods
-
-  void _handleReOrder(int oldIndex, int newIndex, int index) {
-    if (oldIndex != newIndex) {
-      setState(() {
+  @override
+  void handleReOrder(int oldIndex, int newIndex, int index) {
+    setState(() {
+      if (oldIndex != newIndex) {
         final task = columns[index].children[oldIndex];
         columns[index].children.remove(task);
         columns[index].children.insert(newIndex, task);
-      });
-    }
+      }
+    });
   }
 
-  void _handleDrag(KData data, int currentIndex) {
+  void handleDrag(KData data, int currentIndex) {
     setState(() {
       columns[data.from].children.remove(data.task);
       columns[currentIndex].children.add(data.task);
+    });
+  }
+
+  @override
+  void addColumn(String title) {
+    setState(() {
+      columns.add(KColumn(title: title));
+    });
+  }
+
+  @override
+  void addTask(String title, int column) {
+    setState(() {
+      columns[column].children.add(KTask(title: title));
+    });
+  }
+
+  @override
+  void dragHandler(KData data, int index) {
+    setState(() {
+      columns[data.from].children.remove(data.task);
+      columns[index].children.add(data.task);
     });
   }
 }

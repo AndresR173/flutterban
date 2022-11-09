@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/pages/kaban_set_state_page.dart';
+import 'presentation/pages/home_page.dart';
 import 'utils/light_theme.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutterban',
       theme: AppTheme.lightTheme(),
       debugShowCheckedModeBanner: false,
-      home: const KanbanSetStatePage(),
+      home: const HomePage(),
     );
   }
 }
