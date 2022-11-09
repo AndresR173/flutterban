@@ -1,47 +1,21 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../domain/entities/column.dart';
-import '../../domain/entities/data.dart';
-import '../../domain/entities/task.dart';
+import '../../data/data.dart';
+import '../../models/models.dart';
 import '../widgets/add_column_button_widget.dart';
 import '../widgets/add_column_widget.dart';
 import '../widgets/add_task_widget.dart';
 import '../widgets/column_widget.dart';
 
-class KanbanPage extends StatefulWidget {
-  const KanbanPage({super.key});
+class KanbanSetStatePage extends StatefulWidget {
+  const KanbanSetStatePage({super.key});
 
   @override
-  _KanbanPageState createState() => _KanbanPageState();
+  _KanbanSetStatePageState createState() => _KanbanSetStatePageState();
 }
 
-class _KanbanPageState extends State<KanbanPage> {
-  List<KColumn> columns = List.from([
-    KColumn(
-      title: 'To Do',
-      children: [
-        KTask(title: 'ToDo 1'),
-        KTask(title: 'ToDo 2'),
-      ],
-    ),
-    KColumn(
-      title: 'In Progress',
-      children: [
-        KTask(title: 'ToDo 3'),
-      ],
-    ),
-    KColumn(
-      title: 'Done',
-      children: [
-        KTask(title: 'ToDo 4'),
-        KTask(title: 'ToDo 5'),
-      ],
-    )
-  ]);
-
+class _KanbanSetStatePageState extends State<KanbanSetStatePage> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -61,21 +35,16 @@ class _KanbanPageState extends State<KanbanPage> {
           itemCount: columns.length + 1,
           itemBuilder: (context, index) {
             if (index == columns.length) {
-              return AddColumnButton(
-                addColumnAction: () => _showAddColumn(),
-              );
+              return AddColumnButton(addColumnAction: _showAddColumn);
             } else {
               return KanbanColumn(
                 column: columns[index],
                 index: index,
-                dragHandler: (KData data, int currentIndex) =>
-                    _handleDrag(data, currentIndex),
-                reorderHandler: (int oldIndex, int newIndex, int columnIndex) =>
-                    _handleReOrder(oldIndex, newIndex, columnIndex),
-                addTaskHandler: (int index) => _showAddTask(index),
-                dragListener: (PointerMoveEvent event) => _dragListener(event),
-                deleteItemHandler: (int index, KTask task) =>
-                    _deleteItem(index, task),
+                dragHandler: _handleDrag,
+                reorderHandler: _handleReOrder,
+                addTaskHandler: _showAddTask,
+                dragListener: _dragListener,
+                deleteItemHandler: _deleteItem,
               );
             }
           },

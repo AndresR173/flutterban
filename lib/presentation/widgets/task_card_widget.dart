@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/data.dart';
-import '../../domain/entities/task.dart';
+import '../../models/models.dart';
 import 'taks_menu.widget.dart';
 import 'task_text_widget.dart';
 

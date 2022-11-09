@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/column.dart';
-import '../../domain/entities/data.dart';
+import '../../models/models.dart';
 import 'task_card_widget.dart';
 
 class KanbanColumn extends StatelessWidget {

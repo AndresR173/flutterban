@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/pages/kaban_page.dart';
+import 'presentation/pages/kaban_set_state_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: const KanbanPage(),
+      home: const KanbanSetStatePage(),
     );
   }
 }
