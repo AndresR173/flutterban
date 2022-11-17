@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-import '../../../data/data.dart' as data;
+import '../../../data/data.dart';
 import '../../../models/models.dart';
 import 'kanban_event.dart';
 import 'kanban_state.dart';
@@ -9,7 +9,7 @@ export 'kanban_event.dart';
 export 'kanban_state.dart';
 
 class KanbanBloc extends Bloc<KanbanEvent, KanbanState> {
-  List<KColumn> columns = data.columns;
+  List<KColumn> columns = Data.getColumns();
 
   KanbanBloc() : super(KanbanState.initial()) {
     on<KanbanEvent>((event, emit) {
@@ -21,7 +21,10 @@ class KanbanBloc extends Bloc<KanbanEvent, KanbanState> {
         ),
         addColumn: (title) {
           final updatedColumns = currentState.columns;
-          updatedColumns.add(KColumn(title: title, children: []));
+          updatedColumns.add(KColumn(
+            title: title,
+            children: List.of([]),
+          ));
           emit(
             currentState.copyWith(
               columns: updatedColumns,

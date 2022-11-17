@@ -8,6 +8,6 @@ part 'column.freezed.dart';
 class KColumn with _$KColumn {
   const factory KColumn({
     required String title,
-    @Default([]) List<KTask> children,
+    required List<KTask> children,
   }) = _KColumn;
 }
