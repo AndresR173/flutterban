@@ -99,12 +99,11 @@ class __$$_KColumnCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_KColumn implements _KColumn {
-  const _$_KColumn({required this.title, this.children = const []});
+  const _$_KColumn({required this.title, required this.children});
 
   @override
   final String title;
   @override
-  @JsonKey()
   final List<KTask> children;
 
   @override
@@ -134,7 +133,8 @@ class _$_KColumn implements _KColumn {
 
 abstract class _KColumn implements KColumn {
   const factory _KColumn(
-      {required final String title, final List<KTask> children}) = _$_KColumn;
+      {required final String title,
+      required final List<KTask> children}) = _$_KColumn;
 
   @override
   String get title;

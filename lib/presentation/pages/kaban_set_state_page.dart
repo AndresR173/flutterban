@@ -14,6 +14,7 @@ class KanbanSetStatePage extends StatefulWidget {
 
 class _KanbanSetStatePageState extends State<KanbanSetStatePage>
     implements KanbanBoardController {
+  List<KColumn> columns = Data.getColumns();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,18 +48,12 @@ class _KanbanSetStatePageState extends State<KanbanSetStatePage>
     });
   }
 
-  void handleDrag(KData data, int currentIndex) {
-    setState(() {
-      columns[data.from].children.remove(data.task);
-      columns[currentIndex].children.add(data.task);
-    });
-  }
-
   @override
   void addColumn(String title) {
     setState(() {
       columns.add(KColumn(
         title: title,
+        children: List.of([]),
       ));
     });
   }
