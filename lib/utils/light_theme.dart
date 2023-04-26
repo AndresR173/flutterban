@@ -6,16 +6,10 @@ class AppTheme {
   static ThemeData lightTheme() {
     final ThemeData themeData = ThemeData();
     final theme = ThemeData(
-      backgroundColor: Colors.white,
       primaryTextTheme: const TextTheme(
-        headline6: TextStyle(color: Colors.white),
+        titleLarge: TextStyle(color: Colors.white),
       ),
       primaryColor: Colors.red,
-      colorScheme: themeData.colorScheme.copyWith(
-        secondary: Colors.blue,
-        primary: Colors.red,
-        background: Colors.white,
-      ),
       fontFamily: 'Montserrat',
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -57,57 +51,64 @@ class AppTheme {
         ),
       )),
       textTheme: const TextTheme(
-        headline1: TextStyle(
+        displayLarge: TextStyle(
           fontSize: 27.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        headline2: TextStyle(
+        displayMedium: TextStyle(
           fontSize: 26.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        headline3: TextStyle(
+        displaySmall: TextStyle(
           fontSize: 25.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        headline4: TextStyle(
+        headlineMedium: TextStyle(
           fontSize: 24.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        headline5: TextStyle(
+        headlineSmall: TextStyle(
           fontSize: 23.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        headline6: TextStyle(
+        titleLarge: TextStyle(
           fontSize: 22.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        bodyText1: TextStyle(
+        bodyLarge: TextStyle(
           fontSize: 14.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        bodyText2: TextStyle(
+        bodyMedium: TextStyle(
           fontSize: 12.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        subtitle1: TextStyle(
+        titleMedium: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
-        subtitle2: TextStyle(
+        titleSmall: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.normal,
           color: Colors.black,
         ),
       ),
+      colorScheme: themeData.colorScheme
+          .copyWith(
+            secondary: Colors.blue,
+            primary: Colors.red,
+            background: Colors.white,
+          )
+          .copyWith(background: Colors.white),
     );
     return theme;
   }
